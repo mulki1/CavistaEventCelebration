@@ -81,6 +81,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+var policyName = "CorsPolicy";
+ServiceRegistraion.AddServices(builder, policyName);
 var app = builder.Build();
 
 // Migrate DB
@@ -112,9 +114,7 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHangfireDashboard("/eventjobs");
-
-
-app.UseCors(corsPolicyName);
+app.UseCors(policyName);
 app.MapControllers();
 
 app.Run();

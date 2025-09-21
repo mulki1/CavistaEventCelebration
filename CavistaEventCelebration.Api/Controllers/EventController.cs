@@ -18,7 +18,7 @@ public class EventController : ControllerBase
     }
 
 
-    [HttpGet("GetEvent")]
+    [HttpGet]
     public IEnumerable<Event> Get()
     {
         //return Enumerable.Range(1, 5).Select(index =>
