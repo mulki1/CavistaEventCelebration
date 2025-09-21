@@ -7,5 +7,7 @@ namespace CavistaEventCelebration.Api.Services.Interface
     {
         bool SendMail(MailData Mail_Data);
         Task SendEmailAsync(MailData mailData);
+
+        Task SendEmailSmtp(Message message);
     }
 }

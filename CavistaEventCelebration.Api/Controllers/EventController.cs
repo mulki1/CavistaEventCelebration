@@ -32,18 +32,26 @@ public class EventController : ControllerBase
         return null;
     }
 
-    [Authorize(Roles = "SuperAdmin")]
+    //[Authorize(Roles = "SuperAdmin")]
     [HttpPost("send-Email")]
-    public void SendMail(MailData mailData)
+    public async Task SendMail(MailData mailData)
     {
          mailData = new MailData()
         {
-            EmailToId = "baniaz4mulki@yahoo.com",
-            EmailSubject = $"Happy Friday ! 🎊",
+             EmailToId = "baniaz4mulki@yahoo.com",
+             EmailSubject = $"Happy Friday ! 🎊",
             EmailBody = "Abdul friday happy",
             EmailToName = $"Ihsan"
         };
-        _mailService.SendEmailAsync(mailData);
+        await _mailService.SendEmailAsync(mailData);
+    }
+
+    //[Authorize(Roles = "SuperAdmin")]
+    [HttpPost("send-Email2")]
+    public async Task SendMail2(MailData mailData)
+    {
+        var message = new Message(new string[] { "matthewobiasogu@gmail.com" }, "Test email", "This is the content from our email.");
+        await _mailService.SendEmailSmtp(message);
     }
 }
 

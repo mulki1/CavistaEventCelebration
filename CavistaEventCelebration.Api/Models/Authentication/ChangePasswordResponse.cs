@@ -2,6 +2,6 @@
 {
     public class ChangePasswordResponse : BaseResponse
     {
-        public List<string> Errors { get; set; }
+        //public List<string> Errors { get; set; }
     }
 }
