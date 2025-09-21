@@ -48,7 +48,7 @@ public class EventController : ControllerBase
 
     //[Authorize(Roles = "SuperAdmin")]
     [HttpPost("send-Email2")]
-    public async Task SendMail2(MailData mailData)
+    public async Task SendMail2()
     {
         var message = new Message(new string[] { "matthewobiasogu@gmail.com" }, "Test email", "This is the content from our email.");
         await _mailService.SendEmailSmtp(message);

@@ -977,3 +977,339 @@ See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#ssl-handshake-except
 2025-09-21 20:46:29.030 +01:00 [INF] Server axnigcelap1005:14044:ff1fdf7c successfully announced in 227.7265 ms
 2025-09-21 20:46:29.043 +01:00 [INF] Server axnigcelap1005:14044:ff1fdf7c is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
 2025-09-21 20:46:29.825 +01:00 [INF] Server axnigcelap1005:14044:ff1fdf7c all the dispatchers started
+2025-09-21 22:03:15.648 +01:00 [ERR] An error occurred using the connection to database 'cavistaeventcelebration' on server 'tcp://localhost:5432'.
+2025-09-21 22:04:01.319 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:04:01.400 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:04:02.299 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:04:02.317 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:04:02.406 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:04:02.408 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:04:02.409 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:04:02.410 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:04:02.411 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:04:02.412 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:04:02.439 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-21 22:04:02.440 +01:00 [INF] Hosting environment: Development
+2025-09-21 22:04:02.441 +01:00 [INF] Content root path: C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-21 22:04:02.550 +01:00 [INF] Server axnigcelap1005:30304:06d3aecd successfully announced in 110.7462 ms
+2025-09-21 22:04:02.558 +01:00 [INF] Server axnigcelap1005:30304:06d3aecd is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:04:02.589 +01:00 [INF] 2 servers were removed due to timeout
+2025-09-21 22:04:02.735 +01:00 [INF] Server axnigcelap1005:30304:06d3aecd all the dispatchers started
+2025-09-21 22:10:12.087 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:10:12.170 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:10:13.013 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:10:13.028 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:10:13.096 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:10:13.097 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:10:13.098 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:10:13.100 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:10:13.101 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:10:13.101 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:10:13.121 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-21 22:10:13.127 +01:00 [INF] Hosting environment: Development
+2025-09-21 22:10:13.128 +01:00 [INF] Content root path: C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-21 22:10:13.241 +01:00 [INF] Server axnigcelap1005:10192:b7d8f429 successfully announced in 112.4133 ms
+2025-09-21 22:10:13.247 +01:00 [INF] Server axnigcelap1005:10192:b7d8f429 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:10:13.257 +01:00 [INF] 1 servers were removed due to timeout
+2025-09-21 22:10:13.564 +01:00 [INF] Server axnigcelap1005:10192:b7d8f429 all the dispatchers started
+2025-09-21 22:11:03.121 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 301.5906 ms
+2025-09-21 22:11:03.358 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 20.1348 ms
+2025-09-21 22:11:31.907 +01:00 [ERR] An error occured: An error occurred while attempting to establish an SSL or TLS connection.
+
+This usually means that the SSL certificate presented by the server is not trusted by the system for one or more of
+the following reasons:
+
+1. The server is using a self-signed certificate which cannot be verified.
+2. The local system is missing a Root or Intermediate certificate needed to verify the server's certificate.
+3. A Certificate Authority CRL server for one or more of the certificates in the chain is temporarily unavailable.
+4. The certificate presented by the server is expired or invalid.
+5. The set of SSL/TLS protocols supported by the client and server do not match.
+6. You are trying to connect to a port which does not support SSL/TLS.
+
+See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#SslHandshakeException for possible solutions.
+
+2025-09-21 22:11:31.981 +01:00 [ERR] HTTP POST /Event/send-Email2 responded 500 in 21536.6603 ms
+MailKit.Security.SslHandshakeException: An error occurred while attempting to establish an SSL or TLS connection.
+
+This usually means that the SSL certificate presented by the server is not trusted by the system for one or more of
+the following reasons:
+
+1. The server is using a self-signed certificate which cannot be verified.
+2. The local system is missing a Root or Intermediate certificate needed to verify the server's certificate.
+3. A Certificate Authority CRL server for one or more of the certificates in the chain is temporarily unavailable.
+4. The certificate presented by the server is expired or invalid.
+5. The set of SSL/TLS protocols supported by the client and server do not match.
+6. You are trying to connect to a port which does not support SSL/TLS.
+
+See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#SslHandshakeException for possible solutions.
+
+ ---> System.IO.IOException: An existing connection was forcibly closed by the remote host.
+ ---> System.Net.Sockets.SocketException (10054): An existing connection was forcibly closed by the remote host.
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.Stream.Read(Span`1 buffer)
+   at System.Net.Security.SyncReadWriteAdapter.ReadAsync(Stream stream, Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.AuthenticateAsClient(SslClientAuthenticationOptions sslClientAuthenticationOptions)
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Services.implementation.MailService.Send(MimeMessage mailMessage) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 102
+   at CavistaEventCelebration.Api.Services.implementation.MailService.SendEmailSmtp(Message message) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 82
+   at CavistaEventCelebration.Api.Controllers.EventController.SendMail2() in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EventController.cs:line 54
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-21 22:11:32.014 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+MailKit.Security.SslHandshakeException: An error occurred while attempting to establish an SSL or TLS connection.
+
+This usually means that the SSL certificate presented by the server is not trusted by the system for one or more of
+the following reasons:
+
+1. The server is using a self-signed certificate which cannot be verified.
+2. The local system is missing a Root or Intermediate certificate needed to verify the server's certificate.
+3. A Certificate Authority CRL server for one or more of the certificates in the chain is temporarily unavailable.
+4. The certificate presented by the server is expired or invalid.
+5. The set of SSL/TLS protocols supported by the client and server do not match.
+6. You are trying to connect to a port which does not support SSL/TLS.
+
+See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#SslHandshakeException for possible solutions.
+
+ ---> System.IO.IOException: An existing connection was forcibly closed by the remote host.
+ ---> System.Net.Sockets.SocketException (10054): An existing connection was forcibly closed by the remote host.
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.Stream.Read(Span`1 buffer)
+   at System.Net.Security.SyncReadWriteAdapter.ReadAsync(Stream stream, Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.AuthenticateAsClient(SslClientAuthenticationOptions sslClientAuthenticationOptions)
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Services.implementation.MailService.Send(MimeMessage mailMessage) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 102
+   at CavistaEventCelebration.Api.Services.implementation.MailService.SendEmailSmtp(Message message) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 82
+   at CavistaEventCelebration.Api.Controllers.EventController.SendMail2() in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EventController.cs:line 54
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-21 22:14:42.784 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:14:42.860 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:14:43.720 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:14:43.737 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:14:43.865 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:14:43.867 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:14:43.868 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:14:43.868 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:14:43.869 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:14:43.869 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:14:43.888 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-21 22:14:43.889 +01:00 [INF] Hosting environment: Development
+2025-09-21 22:14:43.889 +01:00 [INF] Content root path: C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-21 22:14:43.975 +01:00 [INF] Server axnigcelap1005:21132:31c95d76 successfully announced in 85.5304 ms
+2025-09-21 22:14:43.982 +01:00 [INF] Server axnigcelap1005:21132:31c95d76 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:14:44.064 +01:00 [INF] Server axnigcelap1005:21132:31c95d76 all the dispatchers started
+2025-09-21 22:15:40.231 +01:00 [ERR] An error occured: An error occurred while attempting to establish an SSL or TLS connection.
+
+This usually means that the SSL certificate presented by the server is not trusted by the system for one or more of
+the following reasons:
+
+1. The server is using a self-signed certificate which cannot be verified.
+2. The local system is missing a Root or Intermediate certificate needed to verify the server's certificate.
+3. A Certificate Authority CRL server for one or more of the certificates in the chain is temporarily unavailable.
+4. The certificate presented by the server is expired or invalid.
+5. The set of SSL/TLS protocols supported by the client and server do not match.
+6. You are trying to connect to a port which does not support SSL/TLS.
+
+See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#SslHandshakeException for possible solutions.
+
+2025-09-21 22:15:40.295 +01:00 [ERR] HTTP POST /Event/send-Email2 responded 500 in 21494.9590 ms
+MailKit.Security.SslHandshakeException: An error occurred while attempting to establish an SSL or TLS connection.
+
+This usually means that the SSL certificate presented by the server is not trusted by the system for one or more of
+the following reasons:
+
+1. The server is using a self-signed certificate which cannot be verified.
+2. The local system is missing a Root or Intermediate certificate needed to verify the server's certificate.
+3. A Certificate Authority CRL server for one or more of the certificates in the chain is temporarily unavailable.
+4. The certificate presented by the server is expired or invalid.
+5. The set of SSL/TLS protocols supported by the client and server do not match.
+6. You are trying to connect to a port which does not support SSL/TLS.
+
+See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#SslHandshakeException for possible solutions.
+
+ ---> System.IO.IOException: An existing connection was forcibly closed by the remote host.
+ ---> System.Net.Sockets.SocketException (10054): An existing connection was forcibly closed by the remote host.
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.Stream.Read(Span`1 buffer)
+   at System.Net.Security.SyncReadWriteAdapter.ReadAsync(Stream stream, Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.AuthenticateAsClient(SslClientAuthenticationOptions sslClientAuthenticationOptions)
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Services.implementation.MailService.Send(MimeMessage mailMessage) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 102
+   at CavistaEventCelebration.Api.Services.implementation.MailService.SendEmailSmtp(Message message) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 82
+   at CavistaEventCelebration.Api.Controllers.EventController.SendMail2() in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EventController.cs:line 54
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-21 22:15:40.328 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+MailKit.Security.SslHandshakeException: An error occurred while attempting to establish an SSL or TLS connection.
+
+This usually means that the SSL certificate presented by the server is not trusted by the system for one or more of
+the following reasons:
+
+1. The server is using a self-signed certificate which cannot be verified.
+2. The local system is missing a Root or Intermediate certificate needed to verify the server's certificate.
+3. A Certificate Authority CRL server for one or more of the certificates in the chain is temporarily unavailable.
+4. The certificate presented by the server is expired or invalid.
+5. The set of SSL/TLS protocols supported by the client and server do not match.
+6. You are trying to connect to a port which does not support SSL/TLS.
+
+See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#SslHandshakeException for possible solutions.
+
+ ---> System.IO.IOException: An existing connection was forcibly closed by the remote host.
+ ---> System.Net.Sockets.SocketException (10054): An existing connection was forcibly closed by the remote host.
+   at System.Net.Sockets.Socket.Receive(Byte[] buffer, Int32 offset, Int32 size, SocketFlags socketFlags)
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.Stream.Read(Span`1 buffer)
+   at System.Net.Security.SyncReadWriteAdapter.ReadAsync(Stream stream, Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.AuthenticateAsClient(SslClientAuthenticationOptions sslClientAuthenticationOptions)
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.Connect(String host, Int32 port, SecureSocketOptions options, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Services.implementation.MailService.Send(MimeMessage mailMessage) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 102
+   at CavistaEventCelebration.Api.Services.implementation.MailService.SendEmailSmtp(Message message) in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\MailService.cs:line 82
+   at CavistaEventCelebration.Api.Controllers.EventController.SendMail2() in C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EventController.cs:line 54
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-21 22:19:42.579 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:19:42.679 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:19:43.682 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:19:43.703 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:19:43.810 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:19:43.815 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:19:43.816 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:19:43.818 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:19:43.818 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:19:43.819 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:19:43.854 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-21 22:19:43.855 +01:00 [INF] Hosting environment: Development
+2025-09-21 22:19:43.855 +01:00 [INF] Content root path: C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-21 22:19:44.012 +01:00 [INF] Server axnigcelap1005:20036:f34a85c2 successfully announced in 157.1691 ms
+2025-09-21 22:19:44.020 +01:00 [INF] Server axnigcelap1005:20036:f34a85c2 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:19:44.032 +01:00 [INF] 1 servers were removed due to timeout
+2025-09-21 22:19:44.452 +01:00 [INF] Server axnigcelap1005:20036:f34a85c2 all the dispatchers started
+2025-09-21 22:20:50.989 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:20:51.074 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:20:51.986 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:20:52.003 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:20:52.086 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:20:52.087 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:20:52.088 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:20:52.088 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:20:52.089 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:20:52.090 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:20:52.117 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-21 22:20:52.132 +01:00 [INF] Hosting environment: Development
+2025-09-21 22:20:52.139 +01:00 [INF] Content root path: C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-21 22:20:52.271 +01:00 [INF] Server axnigcelap1005:100:79c1ccac successfully announced in 136.4313 ms
+2025-09-21 22:20:52.277 +01:00 [INF] Server axnigcelap1005:100:79c1ccac is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:20:52.363 +01:00 [INF] Server axnigcelap1005:100:79c1ccac all the dispatchers started
