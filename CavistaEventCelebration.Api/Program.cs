@@ -1,6 +1,5 @@
 using CavistaEventCelebration.Api;
 using CavistaEventCelebration.Api.Data;
-using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Models.EmailService;
 using CavistaEventCelebration.Api.Repositories.Implementation;
 using CavistaEventCelebration.Api.Repositories.Interface;
@@ -9,10 +8,7 @@ using CavistaEventCelebration.Api.Services.Implementation;
 using CavistaEventCelebration.Api.Services.Interface;
 using Hangfire;
 using Hangfire.PostgreSql;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.OpenApi.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,14 +35,6 @@ builder.Services.AddSingleton(emailConfig!);
 // Controllers & Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Cavista Event Celebration API",
-        Version = "v1"
-    });
-});
 
 // DB
 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
@@ -57,10 +45,6 @@ Console.WriteLine($"DB Connection: {connectionString}");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
-
 builder.Host.UseSerilog((context, config) =>
     config.ReadFrom.Configuration(context.Configuration)
 );
@@ -69,17 +53,6 @@ builder.Host.UseSerilog((context, config) =>
 builder.Services.AddHangfire(config =>
     config.UsePostgreSqlStorage(connectionString));
 builder.Services.AddHangfireServer();
-
-var corsPolicyName = "AllowAll";
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(corsPolicyName, policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-});
 
 var policyName = "CorsPolicy";
 ServiceRegistraion.AddServices(builder, policyName);

@@ -76,8 +76,7 @@ namespace CavistaEventCelebration.Api
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
-            builder.Services.AddHangfire(config =>
-    config.UsePostgreSqlStorage(connectionString));
+            builder.Services.AddHangfire(config =>  config.UsePostgreSqlStorage(connectionString));
             builder.Services.AddHangfireServer();
 
             builder.Host.UseSerilog((context, config) =>

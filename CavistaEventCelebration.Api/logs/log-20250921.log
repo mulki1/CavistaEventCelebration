@@ -2509,3 +2509,197 @@ See https://github.com/jstedfast/MailKit/blob/master/FAQ.md#SslHandshakeExceptio
 2025-09-21 22:24:23.172 +01:00 [INF] Server axnigcelap1005:17392:bac6d736 successfully announced in 101.2935 ms
 2025-09-21 22:24:23.178 +01:00 [INF] Server axnigcelap1005:17392:bac6d736 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
 2025-09-21 22:24:23.492 +01:00 [INF] Server axnigcelap1005:17392:bac6d736 all the dispatchers started
+2025-09-21 22:32:53.883 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:32:54.052 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:32:54.989 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Scheme already exists: Identity.Application
+   at Microsoft.AspNetCore.Authentication.AuthenticationOptions.AddScheme(String name, Action`1 configureBuilder)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.Authentication.AuthenticationSchemeProvider..ctor(IOptions`1 options, IDictionary`2 schemes)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2025-09-21 22:32:55.046 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Scheme already exists: Identity.Application
+   at Microsoft.AspNetCore.Authentication.AuthenticationOptions.AddScheme(String name, Action`1 configureBuilder)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.Authentication.AuthenticationSchemeProvider..ctor(IOptions`1 options, IDictionary`2 schemes)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-09-21 22:35:31.560 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:35:31.635 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:35:32.492 +01:00 [FTL] Application startup exception
+System.InvalidOperationException: Scheme already exists: Identity.Application
+   at Microsoft.AspNetCore.Authentication.AuthenticationOptions.AddScheme(String name, Action`1 configureBuilder)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.Authentication.AuthenticationSchemeProvider..ctor(IOptions`1 options, IDictionary`2 schemes)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+2025-09-21 22:35:32.512 +01:00 [ERR] Hosting failed to start
+System.InvalidOperationException: Scheme already exists: Identity.Application
+   at Microsoft.AspNetCore.Authentication.AuthenticationOptions.AddScheme(String name, Action`1 configureBuilder)
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Microsoft.AspNetCore.Authentication.AuthenticationSchemeProvider..ctor(IOptions`1 options, IDictionary`2 schemes)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.ReflectionMiddlewareBinder.CreateMiddleware(RequestDelegate next)
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Builder.ApplicationBuilder.Build()
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2025-09-21 22:36:08.951 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:36:09.029 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:36:09.948 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:36:09.963 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:36:10.040 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:36:10.041 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:36:51.227 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:36:51.305 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:36:52.240 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:36:52.257 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:36:52.323 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:36:52.324 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:38:01.280 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:38:01.359 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:38:02.342 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:38:02.357 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:38:02.428 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:38:02.428 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:38:02.429 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:38:02.430 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:38:02.431 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:38:02.431 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:38:02.459 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:38:02.460 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:38:02.460 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:38:02.461 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:38:02.462 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:38:02.463 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:38:02.473 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-21 22:38:02.479 +01:00 [INF] Hosting environment: Development
+2025-09-21 22:38:02.480 +01:00 [INF] Content root path: C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-21 22:38:02.585 +01:00 [INF] Server axnigcelap1005:23324:a6c27b09 successfully announced in 110.9981 ms
+2025-09-21 22:38:02.585 +01:00 [INF] Server axnigcelap1005:23324:39b511ae successfully announced in 124.7926 ms
+2025-09-21 22:38:02.592 +01:00 [INF] Server axnigcelap1005:23324:39b511ae is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:38:02.592 +01:00 [INF] Server axnigcelap1005:23324:a6c27b09 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:38:02.606 +01:00 [INF] 4 servers were removed due to timeout
+2025-09-21 22:38:02.969 +01:00 [INF] Server axnigcelap1005:23324:39b511ae all the dispatchers started
+2025-09-21 22:38:03.052 +01:00 [INF] Server axnigcelap1005:23324:a6c27b09 all the dispatchers started
+2025-09-21 22:38:19.806 +01:00 [INF] HTTP POST /Event/send-Email2 responded 200 in 3969.3355 ms
+2025-09-21 22:38:30.011 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 70.1632 ms
+2025-09-21 22:38:30.219 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 16.1400 ms
+2025-09-21 22:41:35.515 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-21 22:41:35.596 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-21 22:41:36.446 +01:00 [WRN] Overriding address(es) 'http://localhost:5122'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+2025-09-21 22:41:36.469 +01:00 [INF] Now listening on: http://[::]:5000
+2025-09-21 22:41:36.545 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:41:36.547 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:41:36.548 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:41:36.549 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:41:36.550 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:41:36.550 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:41:36.572 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-21 22:41:36.573 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-21 22:41:36.574 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-21 22:41:36.574 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-21 22:41:36.575 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-21 22:41:36.576 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-21 22:41:36.586 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-21 22:41:36.590 +01:00 [INF] Hosting environment: Development
+2025-09-21 22:41:36.591 +01:00 [INF] Content root path: C:\Users\eobiasogu\source\repos\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-21 22:41:36.688 +01:00 [INF] Server axnigcelap1005:32168:259a843a successfully announced in 114.5474 ms
+2025-09-21 22:41:36.688 +01:00 [INF] Server axnigcelap1005:32168:c6c43a2b successfully announced in 101.7668 ms
+2025-09-21 22:41:36.695 +01:00 [INF] Server axnigcelap1005:32168:c6c43a2b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:41:36.695 +01:00 [INF] Server axnigcelap1005:32168:259a843a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-21 22:41:36.877 +01:00 [INF] Server axnigcelap1005:32168:259a843a all the dispatchers started
+2025-09-21 22:41:36.917 +01:00 [INF] Server axnigcelap1005:32168:c6c43a2b all the dispatchers started
