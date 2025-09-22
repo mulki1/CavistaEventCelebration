@@ -18,12 +18,13 @@ using System.Text;
 
 namespace CavistaEventCelebration.Api
 {
-    public static class ServiceRegistraion
+    public static class ServiceRegistration
     {
         public static void AddServices(this WebApplicationBuilder builder, string policyName)
         {
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
+            builder.Services.AddScoped<IEventService, EventService>();
             builder.Services.AddScoped<IEventRepo, EventRepo>();
             builder.Services.AddScoped<IMailService, MailService>();
             builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
@@ -77,7 +78,7 @@ namespace CavistaEventCelebration.Api
             .AddDefaultTokenProviders();
 
             builder.Services.AddHangfire(config =>
-    config.UsePostgreSqlStorage(connectionString));
+            config.UsePostgreSqlStorage(connectionString));
             builder.Services.AddHangfireServer();
 
             builder.Host.UseSerilog((context, config) =>
