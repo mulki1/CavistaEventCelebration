@@ -60,6 +60,11 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
                         return new LoginResponse { Success = true, Message = "Login successful", AccessToken = new JwtSecurityTokenHandler().WriteToken(token), Expiry = dateExpire, RefreshToken = refreshToken };
                     }
+
+                    if (result.IsLockedOut)
+                    {
+                        return new LoginResponse { Success = false, Message = "User is locked out" };
+                    }
                 }
 
                 return new LoginResponse { Success = false, Message = "Wrong email or password" };
@@ -241,7 +246,6 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
             var users = _userManager.Users.
                 Join(_dbContext.Employees, u => u.Email, e => e.EmailAddress, (user, employee) => new {user, employee})
-                .Where(userEmployee => !userEmployee.employee.IsDeprecated)
                 .Select(userEmployee => new UserResponse
                 {
                     Id = userEmployee.user.Id.ToString(),
@@ -250,6 +254,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                     UserName = userEmployee.user.UserName,
                     EmployeeId = userEmployee.employee.Id,
                     Email = userEmployee.user.Email,
+                    Status = (userEmployee.user.LockoutEnd.HasValue && userEmployee.user.LockoutEnd.Value < DateTime.UtcNow) || !userEmployee.user.LockoutEnd.HasValue ? "Active" : "Inactive",
                     PhoneNumber = userEmployee.user.PhoneNumber
                 });
 
