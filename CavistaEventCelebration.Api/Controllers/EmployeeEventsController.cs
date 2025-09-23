@@ -1,4 +1,4 @@
-﻿using CavistaEventCelebration.Api.Dto;
+﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,13 +16,13 @@ namespace CavistaEventCelebration.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEmployeeEvent(EmployeeEventDto employeeEvent)
+        public async Task<IActionResult> AddEmployeeEvent(AddEmployeeEventDto employeeEvent)
         {
             return Ok(await _eventService.AddEmployeeEvent(employeeEvent));
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateEmployeeEvent(EmployeeEventDto employeeEvent)
+        public async Task<IActionResult> UpdateEmployeeEvent(UpdateEmployeeEventDto employeeEvent)
         {
             return Ok(await _eventService.UpdateEployeeEvent(employeeEvent));
         }

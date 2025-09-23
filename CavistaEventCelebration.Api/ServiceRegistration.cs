@@ -23,6 +23,7 @@ namespace CavistaEventCelebration.Api
         public static void AddServices(this WebApplicationBuilder builder, string policyName)
         {
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            builder.Services.AddScoped<IDashBoardService, DashBoardService>();
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             builder.Services.AddScoped<IEventService, EventService>();
             builder.Services.AddScoped<IEventRepo, EventRepo>();

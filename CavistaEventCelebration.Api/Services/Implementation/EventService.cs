@@ -1,4 +1,5 @@
 ﻿using CavistaEventCelebration.Api.Dto;
+using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using CavistaEventCelebration.Api.Services.Interface;
@@ -80,7 +81,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return Response<bool>.Failure("Event could not be update, please try again");
         }
 
-        public async Task<Response<bool>> AddEmployeeEvent(EmployeeEventDto employeeEvent)
+        public async Task<Response<bool>> AddEmployeeEvent(AddEmployeeEventDto employeeEvent)
         {
             if(employeeEvent == null)
             {
@@ -126,13 +127,13 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return Response<bool>.Failure("Could not delete employee event, try again later");
         }
 
-        public async Task<Response<List<EmployeeEvent>>> EmployeeEvents()
+        public async Task<Response<List<EmployeeEventDto>>> EmployeeEvents()
         {
             var events = await _eventRepo.EmployeeEventGet();
-            return Response<List<EmployeeEvent>>.Success(events);
+            return Response<List<EmployeeEventDto>>.Success(events);
         }
 
-        public async Task<Response<bool>> UpdateEployeeEvent(EmployeeEventDto employeeEvent)
+        public async Task<Response<bool>> UpdateEployeeEvent(UpdateEmployeeEventDto employeeEvent)
         {
             var eventItem = await _eventRepo.GetEmployeeEventById(employeeEvent.Id);
             if (eventItem == null)

@@ -1,5 +1,6 @@
 ﻿using CavistaEventCelebration.Api.Data;
 using CavistaEventCelebration.Api.Dto;
+using CavistaEventCelebration.Api.Dto.Event;
 using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -155,17 +156,33 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
             }
         }
 
-        public async Task<List<EmployeeEvent>> EmployeeEventGet()
+        public async Task<List<EmployeeEventDto>> EmployeeEventGet()
         {
             try
             {
-                return await _db.EmployeeEvents.Where(e => !e.IsDeprecated).ToListAsync();
+                return await (
+               from ee in _db.EmployeeEvents
+               join emp in _db.Employees on ee.EmployeeId equals emp.Id
+               join e in _db.Events on ee.EventId equals e.Id
+               where !ee.IsDeprecated
+                     && !emp.IsDeprecated
+               select new EmployeeEventDto
+               {
+                   EmployeeEmailAddress = emp.EmailAddress,
+                   EmployeeFirstName = emp.FirstName,
+                   EmployeeLastName = emp.LastName,
+                   EventId = ee.EventId,
+                   EventTitle = e.Name,
+                   EventDate = ee.EventDate,
+                   EmployeeId = emp.Id
+               }
+           ).ToListAsync();
 
             }
             catch (Exception ex)
             {
                 Log.Error(ex.Message);
-                return new List<EmployeeEvent>();
+                return new List<EmployeeEventDto>();
             }
         }
 
@@ -189,15 +206,36 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                 var empEvent = await _db.EmployeeEvents.FirstOrDefaultAsync(emp => emp.EmployeeId == employeeId && emp.EventId == eventId && !emp.IsDeprecated);
                 if (empEvent == null)
                 {
-                    return true;
+                    return false;
                 }
-                return false;
+                return true;
             }
             catch (Exception ex)
             {
                 Log.Error(ex.Message);
-                return false;
+                return true;
             }
+        }
+
+        public async Task<List<EmployeeEventDto>> GetEventsInRangeAsync(DateOnly startDate, DateOnly endDate)
+        {
+            return await (from ee in _db.EmployeeEvents
+                          join emp in _db.Employees on ee.EmployeeId equals emp.Id
+                          join e in _db.Events on ee.EventId equals e.Id
+                          where ee.EventDate >= startDate
+                                && ee.EventDate <= endDate
+                                && !ee.IsDeprecated
+                                && !emp.IsDeprecated
+                          select new EmployeeEventDto
+                          {
+                              EmployeeEmailAddress = emp.EmailAddress,
+                              EmployeeFirstName = emp.FirstName,
+                              EmployeeLastName = emp.LastName,
+                              EventId = ee.EventId,
+                              EventTitle = e.Name,
+                              EventDate = ee.EventDate,
+                              EmployeeId = emp.Id
+                          }).ToListAsync();
         }
     }
 }

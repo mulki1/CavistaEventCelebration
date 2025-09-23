@@ -1,5 +1,4 @@
-﻿
-using CavistaEventCelebration.Api.Dto;
+﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Models;
 
 namespace CavistaEventCelebration.Api.Services.Interface
