@@ -168,6 +168,7 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                      && !emp.IsDeprecated
                select new EmployeeEventDto
                {
+                   Id = ee.Id,
                    EmployeeEmailAddress = emp.EmailAddress,
                    EmployeeFirstName = emp.FirstName,
                    EmployeeLastName = emp.LastName,

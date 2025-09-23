@@ -1,4 +1,5 @@
-﻿using CavistaEventCelebration.Api.Models.EmailService;
+﻿using System.Text;
+using CavistaEventCelebration.Api.Models.EmailService;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using CavistaEventCelebration.Api.Services.Interface;
 using Hangfire;
@@ -10,13 +11,15 @@ namespace CavistaEventCelebration.Api.Services.Implementation
         private readonly IEventRepo _eventRepo;
         private readonly IMailService _mailService;
         private readonly IRecurringJobManager _recurringJobManager;
+        private readonly IWebHostEnvironment _env;
 
 
-        public EventCelebrationService(IEventRepo eventRepo, IMailService mailService, IRecurringJobManager recurringJobManager)
+        public EventCelebrationService(IEventRepo eventRepo, IMailService mailService, IRecurringJobManager recurringJobManager, IWebHostEnvironment env)
         {
             _eventRepo = eventRepo;
             _mailService = mailService;
             _recurringJobManager = recurringJobManager;
+            _env = env;
         }
 
         public async Task NotifyEventAsync(int eventId)
@@ -52,6 +55,31 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
                 await _mailService.SendEmailAsync(mailData);
             }
+            if (employeeEvents != null && employeeEvents.Any())
+            {
+                var teamsChannelEmail = "9c1a5b36.axxess.com@amer.teams.ms";
+                string today = DateTime.UtcNow.ToString("MMMM, dd , yyyy");
+                string eventType = employeeEvents.FirstOrDefault()?.EventTitle ?? "Event";
+                var summaryBody = new StringBuilder();
+                summaryBody.Append($"<h3>🎉 {today} {eventType} Celebrations 🎉</h3><ul>");
+
+                foreach (var ev in employeeEvents)
+                {
+                    summaryBody.Append($"<li><b>{ev.EmployeeFirstName} {ev.EmployeeLastName}</b></li>");
+                }
+
+                summaryBody.Append("</ul><p>Let's celebrate together! 🎊</p>");
+
+                var teamsMail = new MailData()
+                {
+                    EmailToId = teamsChannelEmail,
+                    EmailToName = "Celebrations Channel",
+                    EmailSubject = $"🎉 {today} {eventType} Celebrations",
+                    EmailBody = summaryBody.ToString()
+                };
+
+                await _mailService.SendEmailAsync(teamsMail);
+            }
         }
 
 
@@ -71,7 +99,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
         private string LoadTemplate()
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "EmailTemplates", "EventTemplate.html");
+            var path = Path.Combine(_env.ContentRootPath, "EmailTemplates", "EventTemplate.html");
             return File.ReadAllText(path);
         }
 
