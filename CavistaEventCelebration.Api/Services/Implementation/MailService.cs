@@ -21,46 +21,7 @@ namespace CavistaEventCelebration.Api.Services.implementation
             _emailConfig = emailConfig;
         }
 
-        public async Task SendEmailAsync(MailData mailData)
-        {
-            try
-            {
-                var host = Environment.GetEnvironmentVariable("SMTP_HOST") ?? _mailSettings.Host;
-                var username = Environment.GetEnvironmentVariable("SMTP_USERNAME") ?? _mailSettings.UserName;
-                var password = Environment.GetEnvironmentVariable("SMTP_PASSWORD") ?? _mailSettings.Password;
-                var fromEmail = Environment.GetEnvironmentVariable("SMTP_EMAIL") ?? _mailSettings.EmailId;
-                var emailMessage = new MimeMessage();
-                var emailFrom = new MailboxAddress(_mailSettings.Name, fromEmail);
-                emailMessage.From.Add(emailFrom);
-                var emailTo = new MailboxAddress(mailData.EmailToName, mailData.EmailToId);
-                emailMessage.To.Add(emailTo);
-                emailMessage.Subject = mailData.EmailSubject;
-                var bodyBuilder = new BodyBuilder();
-                bodyBuilder.TextBody = mailData.EmailBody;
-                if (!string.IsNullOrWhiteSpace(mailData.EmailBody) &&
-                    (mailData.EmailBody.Contains("<html", StringComparison.OrdinalIgnoreCase) ||
-                     mailData.EmailBody.Contains("<body", StringComparison.OrdinalIgnoreCase) ||
-                     mailData.EmailBody.Contains("</")))
-                {
-                    bodyBuilder.HtmlBody = mailData.EmailBody;
-                }
-                emailMessage.Body = bodyBuilder.ToMessageBody();
-                using var smtp = new SmtpClient();
-                smtp.Connect(host, _mailSettings.Port, _mailSettings.UseSSL);
-                smtp.Authenticate(username, password);
-                await smtp.SendAsync(emailMessage);
-                await smtp.DisconnectAsync(true);
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Email sending failed: {ex.Message}");
-
-            }
-        }
-
-        public async Task SendEmailSmtp(Message message)
+        public async Task SendEmailAsync(Message message)
         {
             var emailMessage = CreateEmailMessage(message);
             await Send(emailMessage);
@@ -82,7 +43,6 @@ namespace CavistaEventCelebration.Api.Services.implementation
                 bodyBuilder.HtmlBody = message.Content;
             }
             emailMessage.Body = bodyBuilder.ToMessageBody();
-           // emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
             return emailMessage;
         }
         private async Task Send(MimeMessage mailMessage)

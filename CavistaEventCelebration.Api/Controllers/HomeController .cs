@@ -24,7 +24,7 @@ namespace CavistaEventCelebration.Api.Controllers
             result.UserId = User?.FindFirstValue("id") != null && !string.IsNullOrEmpty(User?.FindFirstValue("id")) ? Guid.Parse(User?.FindFirstValue("id")) : Guid.Empty;
             result.UserEmail = User?.FindFirstValue(ClaimTypes.Email) ?? string.Empty;
             result.UserName = User?.FindFirstValue(ClaimTypes.Name) ?? string.Empty;
-            return Ok(await _service.Get());
+            return Ok(result);
         }
     }
 }

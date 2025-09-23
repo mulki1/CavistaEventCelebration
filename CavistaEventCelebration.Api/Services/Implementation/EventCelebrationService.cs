@@ -54,7 +54,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 };
                 var to = new List<string>() { ev.EmployeeEmailAddress };
                 var message = new Message(to, $"Happy {ev.EventTitle}! 🎊", finalBody);
-                await _mailService.SendEmailSmtp(message);
+                await _mailService.SendEmailAsync(message);
 
             }
             if (employeeEvents != null && employeeEvents.Any())
@@ -82,7 +82,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
                 var to = new List<string>() { teamsChannelEmail };
                 var message = new Message(to, $"🎉 {today} {eventType} Celebrations", summaryBody.ToString());
-                await _mailService.SendEmailSmtp(message);
+                await _mailService.SendEmailAsync(message);
             }
         }
 
