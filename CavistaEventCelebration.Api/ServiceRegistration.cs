@@ -34,8 +34,8 @@ namespace CavistaEventCelebration.Api
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 
-            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
-            builder.Services.AddSingleton(emailConfig!);
+            //var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            //builder.Services.AddSingleton(emailConfig!);
 
             builder.Services.AddSwaggerGen(c =>
             {

@@ -1,0 +1,61 @@
+2025-09-23 15:04:48.665 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-23 15:04:48.825 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-23 15:04:52.953 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-23 15:04:52.953 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-23 15:04:52.954 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-23 15:04:52.954 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-23 15:04:52.954 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-23 15:04:52.955 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-23 15:04:53.148 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-23 15:04:53.149 +01:00 [INF] Hosting environment: Development
+2025-09-23 15:04:53.149 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-23 15:04:53.163 +01:00 [INF] Server desktop-egf5hga:19676:8d7e73a3 successfully announced in 49.3872 ms
+2025-09-23 15:04:53.194 +01:00 [INF] Server desktop-egf5hga:19676:8d7e73a3 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-23 15:04:53.240 +01:00 [INF] 1 servers were removed due to timeout
+2025-09-23 15:04:53.529 +01:00 [INF] Removed 3 outdated record(s) from 'aggregatedcounter' table.
+2025-09-23 15:04:54.644 +01:00 [INF] Removed 8 outdated record(s) from 'job' table.
+2025-09-23 15:04:55.887 +01:00 [INF] Server desktop-egf5hga:19676:8d7e73a3 all the dispatchers started
+2025-09-23 15:04:56.532 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 3149.9816 ms
+2025-09-23 15:04:57.187 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 44.1389 ms
+2025-09-23 15:06:14.200 +01:00 [INF] HTTP GET /eventjobs responded 200 in 156.4157 ms
+2025-09-23 15:06:14.282 +01:00 [INF] HTTP GET /eventjobs/css-dark182101056051558 responded 200 in 1.9162 ms
+2025-09-23 15:06:14.283 +01:00 [INF] HTTP GET /eventjobs/css182102130801685 responded 200 in 19.3080 ms
+2025-09-23 15:06:14.294 +01:00 [INF] HTTP GET /eventjobs/js182101479686918 responded 200 in 10.7408 ms
+2025-09-23 15:06:15.111 +01:00 [INF] HTTP GET /eventjobs responded 200 in 57.3377 ms
+2025-09-23 15:06:17.309 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 56.3565 ms
+2025-09-23 15:06:19.341 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 14.9986 ms
+2025-09-23 15:06:21.150 +01:00 [INF] HTTP GET /eventjobs/jobs/enqueued responded 200 in 68.3055 ms
+2025-09-23 15:06:23.254 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 17.8958 ms
+2025-09-23 15:06:24.159 +01:00 [INF] HTTP GET /eventjobs/jobs/processing responded 200 in 103.5371 ms
+2025-09-23 15:06:26.270 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 6.4673 ms
+2025-09-23 15:06:27.766 +01:00 [INF] HTTP GET /eventjobs/jobs/succeeded responded 200 in 30.3128 ms
+2025-09-23 15:06:29.887 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 23.9710 ms
+2025-09-23 15:06:31.924 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 11.5421 ms
+2025-09-23 15:06:33.959 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 11.1806 ms
+2025-09-23 15:06:36.029 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 31.3732 ms
+2025-09-23 15:06:38.072 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 14.9183 ms
+2025-09-23 15:06:40.117 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 23.3001 ms
+2025-09-23 15:06:42.168 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 25.4463 ms
+2025-09-23 15:06:43.908 +01:00 [INF] HTTP GET /eventjobs/jobs/processing responded 200 in 24.2573 ms
+2025-09-23 15:06:46.032 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 11.3015 ms
+2025-09-23 15:06:48.056 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 6.4185 ms
+2025-09-23 15:06:50.098 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 23.4322 ms
+2025-09-23 15:06:52.120 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 9.9581 ms
+2025-09-23 15:06:54.179 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 34.9428 ms
+2025-09-23 15:06:56.238 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 15.0951 ms
+2025-09-23 15:06:58.277 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 11.7854 ms
+2025-09-23 15:07:00.313 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 13.9428 ms
+2025-09-23 15:07:02.358 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 17.5953 ms
+2025-09-23 15:07:04.394 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 6.8314 ms
+2025-09-23 15:07:06.413 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 4.3529 ms
+2025-09-23 15:07:08.449 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 18.7688 ms
+2025-09-23 15:07:10.443 +01:00 [INF] HTTP GET /eventjobs/jobs/succeeded responded 200 in 10.9064 ms
+2025-09-23 15:07:12.553 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 5.8011 ms
+2025-09-23 15:07:14.605 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 12.5397 ms
+2025-09-23 15:07:16.621 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 4.7025 ms
+2025-09-23 15:07:18.650 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 6.5375 ms
+2025-09-23 15:07:20.681 +01:00 [INF] HTTP POST /eventjobs/stats responded 200 in 6.7724 ms
