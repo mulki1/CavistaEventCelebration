@@ -1,4 +1,4 @@
-﻿using CavistaEventCelebration.Api.Dto;
+﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using CavistaEventCelebration.Api.Services.Interface;

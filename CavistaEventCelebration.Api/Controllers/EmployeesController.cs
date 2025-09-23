@@ -1,4 +1,4 @@
-﻿using CavistaEventCelebration.Api.Dto;
+﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Services.Interface;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;

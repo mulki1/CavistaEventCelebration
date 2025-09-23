@@ -1,4 +1,5 @@
 ﻿using CavistaEventCelebration.Api.Dto;
+using CavistaEventCelebration.Api.Dto.Event;
 using CavistaEventCelebration.Api.Models;
 
 namespace CavistaEventCelebration.Api.Repositories.Interface
@@ -14,8 +15,9 @@ namespace CavistaEventCelebration.Api.Repositories.Interface
         Task<bool> DoesEventExist(string Name);
         Task<bool> AddEmployeeEvent(EmployeeEvent eventItem);
         Task<bool> UpdateEmployeeEvent(EmployeeEvent eventItem);
-        Task<List<EmployeeEvent>> EmployeeEventGet();
+        Task<List<EmployeeEventDto>> EmployeeEventGet();
         Task<EmployeeEvent> GetEmployeeEventById(Guid id);
         Task<bool> DoesEmployeeEventExist(Guid employeeId, int eventId);
+        Task<List<EmployeeEventDto>> GetEventsInRangeAsync(DateOnly startDate, DateOnly endDate);
     }
 }
