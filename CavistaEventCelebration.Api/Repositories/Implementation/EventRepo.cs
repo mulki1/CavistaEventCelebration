@@ -46,7 +46,6 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
             return await _db.Events.Where(e => !e.IsDeprecated).ToListAsync();
         }
 
-
         public async Task<bool> AddEvent(Event eventItem)
         {
             try

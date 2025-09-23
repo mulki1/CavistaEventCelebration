@@ -1,5 +1,8 @@
-﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
+﻿using CavistaEventCelebration.Api.Dto;
+using CavistaEventCelebration.Api.Dto.Employee;
+using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Models;
+using CavistaEventCelebration.Api.Repositories.Implementation;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using CavistaEventCelebration.Api.Services.Interface;
 using ClosedXML.Excel;
@@ -14,10 +17,12 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             _repo = repo;
         }
 
-        public bool AddEmployee(EmployeeDto employee)
+        public  async Task<Response<bool>> AddEmployee(AddEmployeeDto employee)
         {
-            if (employee == null) throw new ArgumentNullException("Employee can not be null");
-
+            if (employee == null)
+            {
+                return Response<bool>.Failure("Employee can not be null");
+            }
             var _employee = new Employee()
             {
                 Id = new Guid(),
@@ -25,7 +30,13 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 FirstName = employee.FirstName,
                 LastName = employee.LastName
             };
-            return _repo.Add(_employee);
+            var resonse =  await _repo.Add(_employee);
+            if (resonse)
+            {
+                return Response<bool>.Success(resonse, "Employee created");
+            }
+
+            return Response<bool>.Failure("Could not create employee");
         }
 
         public async Task UploadEmployee(string filePath)
@@ -66,9 +77,47 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             }
         }
 
-        public async Task<List<Employee>> Get()
+        public async Task<Response<List<Employee>>> Get()
         {
-            return await _repo.Get();
+            var employees = await _repo.Get();
+            return Response<List<Employee>>.Success(employees);
+        }
+
+        public async Task<Response<bool>> DeleteEmployee(Guid id)
+        {
+            var employee = await _repo.GetById(id);
+            if (employee == null)
+            {
+                return Response<bool>.Failure("Employee does not exist");
+            }
+            var result = await _repo.Remove(employee);
+
+            if (result)
+            {
+                return Response<bool>.Success(result, "Employee Deleted");
+            }
+            return Response<bool>.Failure("Could not delete employee, try again later");
+        }
+
+        public async Task<Response<bool>> UpdateEmployee(UpdateEmployeeDto employee)
+        {
+            if (employee == null)
+            {
+                return Response<bool>.Failure("Employee can not be null");
+            }
+            var existingEmployee = await _repo.GetById(employee.Id);
+            if (existingEmployee == null)
+            {
+                return Response<bool>.Failure("Employee does not exist");
+            }
+            existingEmployee.FirstName = employee.FirstName;
+            existingEmployee.LastName = employee.LastName;
+            var result = await _repo.UpdateEmployee(existingEmployee);
+            if (result)
+            {
+                return Response<bool>.Success(true, "Employee updated");
+            }
+            return Response<bool>.Failure("Employee could not be update, please try again");
         }
 
     }

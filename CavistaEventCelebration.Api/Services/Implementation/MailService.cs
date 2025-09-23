@@ -51,6 +51,8 @@ namespace CavistaEventCelebration.Api.Services.implementation
             {
                 try
                 {
+                    // config values like username, password and from should be moved to server enviroment varibale, but it kept for dev testing
+                    // and peer programming with team members
                     client.ServerCertificateValidationCallback = (object sender, X509Certificate? certificate, X509Chain? chain, SslPolicyErrors sslPolicyErrors) => true;
                     client.CheckCertificateRevocation = false;
                     client.Connect(_emailConfig.SmtpServer, _emailConfig.Port, SecureSocketOptions.SslOnConnect);

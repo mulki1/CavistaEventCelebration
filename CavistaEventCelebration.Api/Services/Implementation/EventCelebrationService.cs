@@ -28,6 +28,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
             foreach (var ev in employeeEvents)
             {
+                //Todo : general message and custom message should be added when creating event from the UI
                 string generalMessage = "We are excited to celebrate this special occasion with you!";
                 string customMessage = ev.EventTitle switch
                 {
@@ -82,6 +83,8 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
                 var to = new List<string>() { teamsChannelEmail };
                 var message = new Message(to, $"🎉 {today} {eventType} Celebrations", summaryBody.ToString());
+
+                //this will most likely not work due to teams organisation restriction
                 await _mailService.SendEmailAsync(message);
             }
         }

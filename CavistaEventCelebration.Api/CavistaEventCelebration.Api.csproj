@@ -30,7 +30,6 @@
 
   <ItemGroup>
   <Content Include="EmailTemplates\**\*.*" CopyToOutputDirectory="Always" />
-    <Folder Include="Dto\Employee\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

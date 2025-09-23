@@ -1,4 +1,5 @@
-﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
+﻿using CavistaEventCelebration.Api.Dto.Employee;
+using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Services.Interface;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
@@ -9,25 +10,37 @@ namespace CavistaEventCelebration.Api.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : ControllerBase
     {
-        private readonly IEmployeeService _es;
-        public EmployeesController(IEmployeeService es)
+        private readonly IEmployeeService _employeeService;
+        public EmployeesController(IEmployeeService employeeService)
 
         {
-            _es = es;
+            _employeeService = employeeService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _es.Get());
+            return Ok(await _employeeService.Get());
         }
 
-
         [HttpPost]
-        public async Task<ActionResult<EmployeeDto>> Create([FromBody] EmployeeDto employee)
+        public async Task<ActionResult<AddEmployeeDto>> Create([FromBody] AddEmployeeDto employee)
         {
-            _es.AddEmployee(employee);
-            return CreatedAtAction(nameof(GetAll), new { id = employee.Id }, employee);
+            return Ok( await _employeeService.AddEmployee(employee));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<AddEmployeeDto>> Update([FromBody] UpdateEmployeeDto employee)
+        {
+
+            return Ok(await _employeeService.UpdateEmployee(employee));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<AddEmployeeDto>> Delete(Guid id)
+        {
+
+            return Ok(await _employeeService.DeleteEmployee(id));
         }
 
         [HttpPost("upload-excel")]
@@ -44,6 +57,5 @@ namespace CavistaEventCelebration.Api.Controllers
 
             return Ok(new { Message = "Employee import job has been queued." });
         }
-
     }
 }

@@ -41,7 +41,6 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return Response<bool>.Failure("Could not create event");
         }
 
-
         public async Task<Response<bool>> DeleteEvent(int id)
         {
             var eventItem = await _eventRepo.GetById(id);
@@ -80,7 +79,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             }
             return Response<bool>.Failure("Event could not be update, please try again");
         }
-
+        
         public async Task<Response<bool>> AddEmployeeEvent(AddEmployeeEventDto employeeEvent)
         {
             if(employeeEvent == null)
@@ -126,7 +125,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             }
             return Response<bool>.Failure("Could not delete employee event, try again later");
         }
-
+        
         public async Task<Response<List<EmployeeEventDto>>> EmployeeEvents()
         {
             var events = await _eventRepo.EmployeeEventGet();

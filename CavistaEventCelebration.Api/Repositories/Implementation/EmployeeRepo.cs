@@ -2,6 +2,7 @@
 using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace CavistaEventCelebration.Api.Repositories.Implementation
 {
@@ -14,23 +15,85 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
             _db = db;
         }
 
-        public bool Add(Employee employee)
+        public async Task<bool> Add(Employee employee)
         {
-            _db.Employees.Add(employee);
-            _db.SaveChanges();
-            return true;
+            try
+            {
+                await _db.Employees.AddAsync(employee);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return false;
+            }
+
         }
 
         public async Task<bool> UploadEmployee(List<Employee> employees)
         {
-            await _db.Employees.AddRangeAsync(employees);
-            await _db.SaveChangesAsync();
-            return true;
+            try
+            {
+                await _db.Employees.AddRangeAsync(employees);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return false;
+            }
+
         }
 
         public async Task<List<Employee>> Get()
         {
-            return await _db.Employees.Where(e => !e.IsDeprecated).ToListAsync();
+            return await _db.Employees.Where(e => !e.IsDeprecated).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<bool> Remove(Employee employee)
+        {
+            try
+            {
+                employee.IsDeprecated = true;
+                var result = _db.Employees.Update(employee);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<Employee> GetById(Guid id)
+        {
+            try
+            {
+                return await _db.Employees.FirstOrDefaultAsync(e => e.Id == id && !e.IsDeprecated);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<bool> UpdateEmployee(Employee employee)
+        {
+            try
+            {
+                _db.Employees.Update(employee);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return false;
+            }
         }
     }
 }
