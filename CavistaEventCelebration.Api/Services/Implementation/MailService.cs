@@ -74,47 +74,5 @@ namespace CavistaEventCelebration.Api.Services.implementation
                 throw;
             }
         }
-
-        public async Task SendEmailSmtp(Message message)
-        {
-            var emailMessage = CreateEmailMessage(message);
-            await Send(emailMessage);
-        }
-
-        private MimeMessage CreateEmailMessage(Message message)
-        {
-            var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress("email", _emailConfig.From));
-            emailMessage.To.AddRange(message.To);
-            emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
-            return emailMessage;
-        }
-        private async Task Send(MimeMessage mailMessage)
-        {
-            using (var client = new SmtpClient())
-            {
-                try
-                {
-                    client.ServerCertificateValidationCallback = (object sender, X509Certificate? certificate, X509Chain? chain,  SslPolicyErrors sslPolicyErrors) => true;
-                    client.CheckCertificateRevocation=false;
-                    client.Connect(_emailConfig.SmtpServer, _emailConfig.Port, SecureSocketOptions.SslOnConnect);
-                    client.AuthenticationMechanisms.Remove("XOAUTH2");
-                    client.Authenticate(_emailConfig.UserName, _emailConfig.Password);
-                    var x = await client.SendAsync(mailMessage);
-                    Console.WriteLine(x);
-                }
-                catch(Exception ex)
-                {
-                    Log.Error($"An error occured: {ex.Message}");
-                    throw;
-                }
-                finally
-                {
-                    client.Disconnect(true);
-                    client.Dispose();
-                }
-            }
-        }        
     }
 }
