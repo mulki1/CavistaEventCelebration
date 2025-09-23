@@ -1,5 +1,6 @@
 ﻿using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Models.Authentication;
+using CavistaEventCelebration.Api.Models.EmailService;
 using CavistaEventCelebration.Api.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,12 @@ namespace CavistaEventCelebration.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
+        private readonly IMailService _mailService;
 
-        public AuthController(IAuthenticationService authentication)
+        public AuthController(IAuthenticationService authentication, IMailService mailService)
         {
             _authenticationService = authentication;
+            _mailService = mailService;
         }
 
         [HttpPost("Signup")]
@@ -131,6 +134,14 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest(result);
         }
 
+
+        [HttpGet("Test-email-on-smtp/{email}")]
+        public async Task  Get(string email)
+        {
+            var rng = new Random();
+            var message = new Message(new string[] { email }, "Test email", "This is the content from our email.");
+            await _mailService.SendEmailSmtp(message);
+        }
 
 
     }
