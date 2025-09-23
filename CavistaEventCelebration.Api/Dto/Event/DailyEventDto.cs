@@ -1,4 +1,4 @@
-﻿namespace CavistaEventCelebration.Api.Dto
+﻿namespace CavistaEventCelebration.Api.Dto.Event
 {
     public class DailyEventDto
     {

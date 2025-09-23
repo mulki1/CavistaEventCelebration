@@ -1,6 +1,6 @@
-﻿namespace CavistaEventCelebration.Api.Dto
+﻿namespace CavistaEventCelebration.Api.Dto.EmployeeEvent
 {
-    public class EmployeeEventDto
+    public class UpdateEmployeeEventDto
     {
         public Guid Id { get; set; }
         public Guid EmployeeId { get; set; }
