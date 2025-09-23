@@ -45,14 +45,22 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 if (user != null && !string.IsNullOrWhiteSpace(userName))
                 {                   
                     var refreshToken = GenerateRefreshToken();
+
                     user.RefreshToken = refreshToken;
+
                     user.RefreshTokenExpiryTime = DateTime.Now.AddDays(60).ToUniversalTime();
+
                     var result = await _signInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, lockoutOnFailure: false);
+
                     var roles = await _userManager.GetRolesAsync(user);
+
                     if (result.Succeeded && await _dbContext.SaveChangesAsync() > 0)
                     {
-                        var dateExpire = DateTime.Now.AddMinutes(10);
-                        var token = GenerateAccessToken(userName, model.Email, roles, dateExpire);
+                        var dateExpire = DateTime.Now.AddMinutes(60);
+
+                        var id = user.Id.ToString();
+
+                        var token = GenerateAccessToken(id, userName, model.Email, roles, dateExpire);
 
                         return new LoginResponse { Success = true, Message = "Login successful", AccessToken = new JwtSecurityTokenHandler().WriteToken(token), Expiry = dateExpire, RefreshToken = refreshToken };
                     }
@@ -146,13 +154,17 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                     if (user != null)
                     {
                         var roles = await _userManager.GetRolesAsync(user);
+
                         var dateExpire = DateTime.Now.AddMinutes(60);
+
                         string email = user.Email ?? string.Empty;
+                        var id = user.Id.ToString();
 
                         if (user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
                                 return new LoginResponse { Success = false, Message = "Invalid refresh token or refresh token has expired" };
 
-                        var newAccessToken = GenerateAccessToken(username, email, roles, dateExpire);
+                        var newAccessToken = GenerateAccessToken(id, username, email, roles, dateExpire);
+
                         var newRefreshToken = GenerateRefreshToken();
                        
                         user.RefreshToken = newRefreshToken;
@@ -203,6 +215,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             if (oldUser != null)
             {
                 var userHasRole = await _userManager.IsInRoleAsync(oldUser, changeUserRole.Role);
+
                 var roleExist = await _roleManager.RoleExistsAsync(changeUserRole.Role);
 
                 if (!userHasRole && roleExist)
@@ -270,11 +283,12 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return result;
         }
 
-        private JwtSecurityToken GenerateAccessToken(string userName, string email, IList<string> roles, DateTime? expiry)
+        private JwtSecurityToken GenerateAccessToken(string id, string userName, string email, IList<string> roles, DateTime? expiry)
         {         
             // Create user claims
             var claims = new List<Claim>
             {
+                new Claim("id", id),
                 new Claim(ClaimTypes.Name, userName),
                 new Claim(ClaimTypes.Email, email),
              };
