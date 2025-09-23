@@ -1,17 +1,24 @@
 ﻿using CavistaEventCelebration.Api.Models.EmailService;
 using CavistaEventCelebration.Api.Services.Interface;
 using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using Org.BouncyCastle.Asn1.Pkcs;
+using Serilog;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CavistaEventCelebration.Api.Services.implementation
 {
     public class MailService : IMailService
     {
         private readonly MailSettings _mailSettings;
-        public MailService(IOptions<MailSettings> options)
+        private readonly EmailConfiguration _emailConfig;
+        public MailService(IOptions<MailSettings> options, EmailConfiguration emailConfig)
         {
             _mailSettings = options.Value;
+            _emailConfig = emailConfig;
         }
 
         public async Task SendEmailAsync(MailData mailData)
@@ -50,6 +57,58 @@ namespace CavistaEventCelebration.Api.Services.implementation
             {
                 Console.WriteLine($"Email sending failed: {ex.Message}");
 
+            }
+        }
+
+        public async Task SendEmailSmtp(Message message)
+        {
+            var emailMessage = CreateEmailMessage(message);
+            await Send(emailMessage);
+        }
+
+        private MimeMessage CreateEmailMessage(Message message)
+        {
+            var emailMessage = new MimeMessage();
+            emailMessage.From.Add(new MailboxAddress("email", _emailConfig.From));
+            emailMessage.To.AddRange(message.To);
+            emailMessage.Subject = message.Subject;
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = message.Content;
+            if (!string.IsNullOrWhiteSpace(message.Content) &&
+                (message.Content.Contains("<html", StringComparison.OrdinalIgnoreCase) ||
+                 message.Content.Contains("<body", StringComparison.OrdinalIgnoreCase) ||
+                 message.Content.Contains("</")))
+            {
+                bodyBuilder.HtmlBody = message.Content;
+            }
+            emailMessage.Body = bodyBuilder.ToMessageBody();
+           // emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
+            return emailMessage;
+        }
+        private async Task Send(MimeMessage mailMessage)
+        {
+            using (var client = new SmtpClient())
+            {
+                try
+                {
+                    client.ServerCertificateValidationCallback = (object sender, X509Certificate? certificate, X509Chain? chain, SslPolicyErrors sslPolicyErrors) => true;
+                    client.CheckCertificateRevocation = false;
+                    client.Connect(_emailConfig.SmtpServer, _emailConfig.Port, SecureSocketOptions.SslOnConnect);
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+                    client.Authenticate(_emailConfig.UserName, _emailConfig.Password);
+                    var x = await client.SendAsync(mailMessage);
+                    Console.WriteLine(x);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"An error occured: {ex.Message}");
+                    throw;
+                }
+                finally
+                {
+                    client.Disconnect(true);
+                    client.Dispose();
+                }
             }
         }
     }
