@@ -29,7 +29,7 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                 join e in _db.Events on ee.EventId equals e.Id
                 where ee.EventId == eventId
                       && ee.EventDate == today
-                      && !ee.IsDeprecated && ee.IsApproved
+                      && !ee.IsDeprecated //&& ee.IsApproved
                       && !emp.IsDeprecated
                 select new DailyEventDto
                 {
