@@ -83,7 +83,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return Response<bool>.Failure("Event could not be update, please try again");
         }
         
-        public async Task<Response<bool>> AddEmployeeEvent(AddEmployeeEventDto employeeEvent)
+        public async Task<Response<bool>> AddEmployeeEvent(bool canApprove, Guid userId, AddEmployeeEventDto employeeEvent)
         {
             if(employeeEvent == null)
             {
@@ -103,6 +103,12 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 EventDate = employeeEvent.EventDate,
                 IsDeprecated = false
             };
+            if (canApprove)
+            {
+                newEployeeEvent.ApprovedBy = userId;
+                newEployeeEvent.IsApproved = true;
+                newEployeeEvent.DateApproved = DateTime.UtcNow;
+            }
 
             var result = await _eventRepo.AddEmployeeEvent(newEployeeEvent);
             if (result)
@@ -129,11 +135,11 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return Response<bool>.Failure("Could not delete employee event, try again later");
         }
         
-        public async Task<PaginatedList<EmployeeEventDto>> EmployeeEvents(int? index, int? pageSize, string? searchString)
+        public async Task<PaginatedList<EmployeeEventDto>> EmployeeEvents(Guid currentUserId, int? index, int? pageSize, string? searchString)
         {
             var eventResp = new List<EmployeeEventDto>();
             var result = new PaginatedList<EmployeeEventDto>(eventResp, 0, 1, 10);
-            var events =  _eventRepo.EmployeeEventGet();
+            var events =  _eventRepo.EmployeeEventGet(currentUserId);
             if (events != null)
             {
                 if (!string.IsNullOrEmpty(searchString))
@@ -151,7 +157,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return result;
         }
 
-        public async Task<Response<bool>> UpdateEployeeEvent(UpdateEmployeeEventDto employeeEvent)
+        public async Task<Response<bool>> UpdateEmployeeEvent(UpdateEmployeeEventDto employeeEvent)
         {
             var eventItem = await _eventRepo.GetEmployeeEventById(employeeEvent.Id);
             if (eventItem == null)
@@ -168,6 +174,28 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 return Response<bool>.Success(true, "Employee Event updated");
             }
             return Response<bool>.Failure("Employee Event could not be updated, please try again");
+        }
+
+        public async Task<Response<bool>> ApproveEmployeeEvent(Guid userId, List<Guid> employeeIds)
+        {
+            var eventItems = await _eventRepo.GetEmployeeEvents(employeeIds);
+            if (eventItems == null || !eventItems.Any())
+            {
+                return Response<bool>.Failure("Employee Events do not exist");
+            }
+            eventItems.ForEach( e =>
+            {
+                e.IsApproved = true;
+                e.DateApproved = DateTime.UtcNow;
+                e.ApprovedBy = userId;
+                });
+
+            var result = await _eventRepo.UpdateEmployeeEvents(eventItems);
+            if (result)
+            {
+                return Response<bool>.Success(true, "Employee Events Aprroved");
+            }
+            return Response<bool>.Failure("Employee Event could not be approved, please try again");
         }
     }
 }

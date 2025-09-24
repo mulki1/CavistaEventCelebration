@@ -1,4 +1,5 @@
-﻿using CavistaEventCelebration.Api.Data;
+﻿using System.Linq.Expressions;
+using CavistaEventCelebration.Api.Data;
 using CavistaEventCelebration.Api.Dto;
 using CavistaEventCelebration.Api.Dto.Event;
 using CavistaEventCelebration.Api.Models;
@@ -28,7 +29,7 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                 join e in _db.Events on ee.EventId equals e.Id
                 where ee.EventId == eventId
                       && ee.EventDate == today
-                      && !ee.IsDeprecated
+                      && !ee.IsDeprecated && ee.IsApproved
                       && !emp.IsDeprecated
                 select new DailyEventDto
                 {
@@ -156,29 +157,36 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
             }
         }
 
-        public IQueryable<EmployeeEventDto> EmployeeEventGet()
+        public IQueryable<EmployeeEventDto> EmployeeEventGet(Guid currentUserId)
         {
             try
             {
                 return (
-               from ee in _db.EmployeeEvents
-               join emp in _db.Employees on ee.EmployeeId equals emp.Id
-               join e in _db.Events on ee.EventId equals e.Id
-               where !ee.IsDeprecated
-                     && !emp.IsDeprecated
-               select new EmployeeEventDto
-               {
-                   Id = ee.Id,
-                   EmployeeEmailAddress = emp.EmailAddress,
-                   EmployeeFirstName = emp.FirstName,
-                   EmployeeLastName = emp.LastName,
-                   EventId = ee.EventId,
-                   EventTitle = e.Name,
-                   EventDate = ee.EventDate,
-                   EmployeeId = emp.Id
-               }
-           ).AsQueryable();
+                    from ee in _db.EmployeeEvents
+                    join emp in _db.Employees on ee.EmployeeId equals emp.Id
+                    join e in _db.Events on ee.EventId equals e.Id
 
+                    join u in _db.Users on ee.ApprovedBy equals u.Id into approvedUsers
+                    from u in approvedUsers.DefaultIfEmpty()
+
+                    join approverEmp in _db.Employees on u.Email equals approverEmp.EmailAddress into approverEmployees
+                    from approverEmp in approverEmployees.DefaultIfEmpty()
+
+                    where !ee.IsDeprecated && !emp.IsDeprecated && (currentUserId == Guid.Empty || emp.Id == currentUserId)
+                    select new EmployeeEventDto
+                    {
+                        Id = ee.Id,
+                        EmployeeEmailAddress = emp.EmailAddress,
+                        EmployeeFirstName = emp.FirstName,
+                        EmployeeLastName = emp.LastName,
+                        EventId = ee.EventId,
+                        EventTitle = e.Name,
+                        EventDate = ee.EventDate,
+                        EmployeeId = emp.Id,
+                        IsApproved = ee.IsApproved,
+                        ApprovedBy = approverEmp != null ? $"{approverEmp.FirstName} {approverEmp.LastName}" : "",
+                    }
+                ).AsQueryable();
             }
             catch (Exception ex)
             {
@@ -197,6 +205,34 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
             {
                 Log.Error(ex.Message);
                 return null;
+            }
+        }
+
+        public async Task<List<EmployeeEvent>> GetEmployeeEvents(List<Guid> employeeEventIds)
+        {
+            try
+            {
+                return await _db.EmployeeEvents.Where(e => employeeEventIds.Contains(e.Id) && !e.IsDeprecated).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return null;
+            }
+        }
+
+        public async Task<bool> UpdateEmployeeEvents(List<EmployeeEvent> employeeEvents)
+        {
+            try
+            {
+                _db.EmployeeEvents.UpdateRange(employeeEvents);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return false;
             }
         }
 
