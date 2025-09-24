@@ -4,6 +4,7 @@ using CavistaEventCelebration.Api.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using CavistaEventCelebration.Api.Dto;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace CavistaEventCelebration.Api.Controllers
 {
@@ -22,13 +23,15 @@ namespace CavistaEventCelebration.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEmployeeEvent(AddEmployeeEventDto employeeEvent)
         {
-            return Ok(await _eventService.AddEmployeeEvent(employeeEvent));
+            var userId = Guid.Parse(User.FindFirst("id").Value);
+            var canApprove = User.IsInRole("SuperAdmin") || User.IsInRole("People");
+            return Ok(await _eventService.AddEmployeeEvent(canApprove, userId, employeeEvent));
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateEmployeeEvent(UpdateEmployeeEventDto employeeEvent)
         {
-            return Ok(await _eventService.UpdateEployeeEvent(employeeEvent));
+            return Ok(await _eventService.UpdateEmployeeEvent(employeeEvent));
         }
 
         [HttpDelete]
@@ -40,7 +43,16 @@ namespace CavistaEventCelebration.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<PaginatedList<EmployeeEventDto>>> Get(int? index, int? pageSize, string? searchString)
         {
-            return Ok(await _eventService.EmployeeEvents(index, pageSize, searchString));
+            Guid currentUserId = User.IsInRole("SuperAdmin") || User.IsInRole("People") ? Guid.Empty : Guid.Parse(User.FindFirst("id").Value);
+            return Ok(await _eventService.EmployeeEvents(currentUserId, index, pageSize, searchString));
+        }
+
+        [Authorize(Roles = "SuperAdmin,People")]
+        [HttpPut("approve-employee-event")]
+        public async Task<IActionResult> ApproveEmployeeEvent([FromBody] List<Guid> employeeIds)
+        {
+            var userId = User?.FindFirstValue("id") != null && !string.IsNullOrEmpty(User?.FindFirstValue("id")) ? Guid.Parse(User?.FindFirstValue("id")) : Guid.Empty;
+            return Ok(await _eventService.ApproveEmployeeEvent(userId, employeeIds));
         }
     }
 }

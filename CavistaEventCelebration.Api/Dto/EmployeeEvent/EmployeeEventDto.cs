@@ -10,5 +10,14 @@
         public string EmployeeLastName { get; set; }
         public string EmployeeEmailAddress { get; set; }
         public string EventTitle { get; set; }
+        public bool IsApproved { get; set; }
+        public string ApprovedBy { get; set; }
+        public string Status
+        {
+            get
+            {
+                return IsApproved ? "Approved" : "Pending";
+            }
+        }
     }
 }

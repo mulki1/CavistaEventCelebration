@@ -360,3 +360,73 @@ Npgsql.PostgresException (0x80004005): 2201X: OFFSET must not be negative
     Line: 373
     Routine: recompute_limits
 2025-09-24 08:28:39.339 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 26.6994 ms
+2025-09-24 16:13:05.574 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-24 16:13:05.659 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-24 16:13:07.880 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-24 16:13:07.881 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-24 16:13:07.882 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-24 16:13:07.882 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-24 16:13:07.882 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-24 16:13:07.883 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-24 16:13:07.921 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 16:13:07.922 +01:00 [INF] Hosting environment: Development
+2025-09-24 16:13:07.922 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-24 16:13:07.967 +01:00 [INF] Server desktop-egf5hga:16632:6bd91f4d successfully announced in 28.329 ms
+2025-09-24 16:13:07.975 +01:00 [INF] Server desktop-egf5hga:16632:6bd91f4d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-24 16:13:07.990 +01:00 [INF] 2 servers were removed due to timeout
+2025-09-24 16:13:08.217 +01:00 [INF] Removed 2 outdated record(s) from 'aggregatedcounter' table.
+2025-09-24 16:13:08.962 +01:00 [INF] Server desktop-egf5hga:16632:6bd91f4d all the dispatchers started
+2025-09-24 16:13:09.267 +01:00 [INF] Removed 9 outdated record(s) from 'job' table.
+2025-09-24 16:14:14.773 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 65903.6948 ms
+2025-09-24 16:14:15.075 +01:00 [ERR] HTTP GET /swagger/v1/swagger.json responded 500 in 24.3028 ms
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "PUT api/EmployeeEvents" for actions - CavistaEventCelebration.Api.Controllers.EmployeeEventsController.UpdateEmployeeEvent (CavistaEventCelebration.Api),CavistaEventCelebration.Api.Controllers.EmployeeEventsController.ApproveEmployeeEvent (CavistaEventCelebration.Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-24 16:14:15.093 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "PUT api/EmployeeEvents" for actions - CavistaEventCelebration.Api.Controllers.EmployeeEventsController.UpdateEmployeeEvent (CavistaEventCelebration.Api),CavistaEventCelebration.Api.Controllers.EmployeeEventsController.ApproveEmployeeEvent (CavistaEventCelebration.Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 16:16:50.981 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 8.1139 ms
+2025-09-24 16:18:33.586 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 2.6562 ms
+2025-09-24 16:18:33.777 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.7185 ms
+2025-09-24 16:18:34.948 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 141.6095 ms
+2025-09-24 16:20:03.096 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 401 in 56.5483 ms
+2025-09-24 16:23:02.353 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 6830.1490 ms
+2025-09-24 16:24:00.646 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 16:24:00.649 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 16:24:05.623 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 18650.3109 ms
+2025-09-24 16:26:57.719 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 145053.9160 ms
+2025-09-24 16:29:44.373 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 3.9649 ms
+2025-09-24 16:29:44.561 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1689 ms
+2025-09-24 16:29:45.163 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 29.7793 ms
+2025-09-24 16:31:10.458 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 0.8673 ms
+2025-09-24 16:31:10.525 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1702 ms
+2025-09-24 16:31:11.138 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 24.8537 ms
+2025-09-24 16:31:49.744 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 401 in 1.4676 ms
+2025-09-24 16:31:58.959 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 8.2474 ms
+2025-09-24 16:31:59.056 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1461 ms
+2025-09-24 16:31:59.525 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 37.4585 ms
+2025-09-24 16:33:00.216 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 13872.7648 ms
+2025-09-24 16:34:26.258 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 16:34:26.258 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 16:34:26.282 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 19391.8588 ms
+2025-09-24 16:35:32.486 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 2804.9123 ms
+2025-09-24 16:39:17.174 +01:00 [INF] HTTP PUT /api/EmployeeEvents/approve-employee-event responded 200 in 76328.1949 ms
+2025-09-24 16:39:41.675 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 3640.8560 ms

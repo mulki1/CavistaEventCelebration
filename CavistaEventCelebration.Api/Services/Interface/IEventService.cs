@@ -11,9 +11,10 @@ namespace CavistaEventCelebration.Api.Services.Interface
         Task<Response<bool>> DeleteEvent(int id);
         Task<Response<List<Event>>> Events();
         Task<Response<bool>> UpdateEvent(int id, EventDto updateEvent);
-        Task<Response<bool>> AddEmployeeEvent(AddEmployeeEventDto employeeEvent);
+        Task<Response<bool>> AddEmployeeEvent(bool canApprove, Guid userId, AddEmployeeEventDto employeeEvent);
         Task<Response<bool>> DeleteEmployeeEvent(Guid id);
-        Task<PaginatedList<EmployeeEventDto>> EmployeeEvents(int? index, int? pageSize, string? searchString);
-        Task<Response<bool>> UpdateEployeeEvent(UpdateEmployeeEventDto employeeEvent);
+        Task<PaginatedList<EmployeeEventDto>> EmployeeEvents(Guid currentUserId, int? index, int? pageSize, string? searchString);
+        Task<Response<bool>> UpdateEmployeeEvent(UpdateEmployeeEventDto employeeEvent);
+        Task<Response<bool>> ApproveEmployeeEvent(Guid userId, List<Guid> employeeIds);
     }
 }
