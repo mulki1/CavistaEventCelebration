@@ -2,7 +2,6 @@
 using CavistaEventCelebration.Api.Dto.Employee;
 using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Models;
-using CavistaEventCelebration.Api.Repositories.Implementation;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using CavistaEventCelebration.Api.Services.Interface;
 using ClosedXML.Excel;
@@ -77,10 +76,27 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             }
         }
 
-        public async Task<Response<List<Employee>>> Get()
+        public async Task<PaginatedList<Employee>> Get(int? index, int? pageSize, string? searchString)
         {
-            var employees = await _repo.Get();
-            return Response<List<Employee>>.Success(employees);
+            var empResp = new List<Employee>();
+            var result = new PaginatedList<Employee>(empResp, 0, 1, 10);
+            var employees =  _repo.Get();
+            if(employees != null)
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    employees = employees.Where(e => e.LastName.ToLower().Contains(searchString.ToLower())
+                    || e.FirstName.ToLower().Contains(searchString.ToLower())
+                    || e.EmailAddress.ToLower().Contains(searchString.ToLower())
+                    );
+                }
+
+                result = await PaginatedList<Employee>.CreateAsync(employees, index ?? 1, pageSize ?? 10);
+                return result;
+
+            }
+
+            return result;
         }
 
         public async Task<Response<bool>> DeleteEmployee(Guid id)

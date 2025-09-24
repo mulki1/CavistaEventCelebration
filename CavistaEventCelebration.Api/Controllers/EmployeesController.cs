@@ -1,13 +1,16 @@
 ﻿using CavistaEventCelebration.Api.Dto.Employee;
 using CavistaEventCelebration.Api.Dto.EmployeeEvent;
+using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Services.Interface;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CavistaEventCelebration.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EmployeesController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
@@ -18,9 +21,9 @@ namespace CavistaEventCelebration.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<PaginatedList<Employee>>> Get(int? index, int? pageSize, string? searchString)
         {
-            return Ok(await _employeeService.Get());
+            return Ok(await _employeeService.Get(index, pageSize, searchString));
         }
 
         [HttpPost]

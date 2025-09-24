@@ -1,10 +1,13 @@
-﻿using CavistaEventCelebration.Api.Services.Interface;
+﻿using CavistaEventCelebration.Api.Dto.Event;
+using CavistaEventCelebration.Api.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CavistaEventCelebration.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EventsController : ControllerBase
     {
         private readonly IEventService _eventService;
@@ -15,25 +18,25 @@ namespace CavistaEventCelebration.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEvents()
+        public async Task<IActionResult> Get()
         {
             return Ok(await _eventService.Events());
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEvent([FromBody] string name)
+        public async Task<IActionResult> Add([FromBody] EventDto newEvent)
         {
-            return Ok(await _eventService.AddEvent(name));
+            return Ok(await _eventService.AddEvent(newEvent));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEvent(int id, [FromBody] string name)
+        public async Task<IActionResult> Update(int id, [FromBody] EventDto updateEvent)
         {
-            return Ok(await _eventService.UpdateEvent(id, name));
+            return Ok(await _eventService.UpdateEvent(id, updateEvent));
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEvent(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             return Ok(await _eventService.DeleteEvent(id));
         }

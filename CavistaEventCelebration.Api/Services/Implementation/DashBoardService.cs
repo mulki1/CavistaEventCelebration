@@ -25,12 +25,13 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             var startOfMonth = new DateOnly(today.Year, today.Month, 1);
             var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
             var monthEvents = await _eventRepo.GetEventsInRangeAsync(startOfMonth, endOfMonth);
-            var employees = await _employeeRepo.Get();
+            var employees =  _employeeRepo.Get().ToList();
+            var limitedMonthEvents = monthEvents.OrderBy(d => d.EventDate).Take(10); // limit number of event se
 
             dashBoardEvents.NumberOfEmployees = employees.Count();
             if(monthEvents != null && monthEvents.Count > 0)
             {
-                dashBoardEvents.EventsForTheMonth = monthEvents;
+                dashBoardEvents.EventsForTheMonth = monthEvents.OrderBy(d => d.EventDate).ThenBy(d => d.EmployeeFirstName).Take(10).ToList();
                 dashBoardEvents.NumberOfEventsForTheMonth = monthEvents.Count();
                 dashBoardEvents.EventsForTheWeek = monthEvents.Where(e => e.EventDate >= startOfWeek && e.EventDate <= endOfWeek).ToList();
                 dashBoardEvents.EventsForToday = monthEvents.Where(e => e.EventDate >= today && e.EventDate <= today).ToList();

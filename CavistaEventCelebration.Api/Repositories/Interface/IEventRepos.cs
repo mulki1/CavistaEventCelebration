@@ -15,7 +15,7 @@ namespace CavistaEventCelebration.Api.Repositories.Interface
         Task<bool> DoesEventExist(string Name);
         Task<bool> AddEmployeeEvent(EmployeeEvent eventItem);
         Task<bool> UpdateEmployeeEvent(EmployeeEvent eventItem);
-        Task<List<EmployeeEventDto>> EmployeeEventGet();
+        IQueryable<EmployeeEventDto> EmployeeEventGet();
         Task<EmployeeEvent> GetEmployeeEventById(Guid id);
         Task<bool> DoesEmployeeEventExist(Guid employeeId, int eventId);
         Task<List<EmployeeEventDto>> GetEventsInRangeAsync(DateOnly startDate, DateOnly endDate);

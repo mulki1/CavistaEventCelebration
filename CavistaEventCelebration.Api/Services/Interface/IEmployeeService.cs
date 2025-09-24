@@ -9,7 +9,7 @@ namespace CavistaEventCelebration.Api.Services.Interface
     {
         Task<Response<bool>> AddEmployee(AddEmployeeDto employee);
         Task UploadEmployee(string filePath);
-        Task<Response<List<Employee>>> Get();
+        Task<PaginatedList<Employee>> Get(int? index, int? pageSize, string? searchString);
         Task<Response<bool>> DeleteEmployee(Guid id);
         Task<Response<bool>> UpdateEmployee(UpdateEmployeeDto employee);
     }

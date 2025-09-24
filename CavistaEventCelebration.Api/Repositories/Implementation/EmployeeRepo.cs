@@ -47,9 +47,9 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
 
         }
 
-        public async Task<List<Employee>> Get()
+        public IQueryable<Employee> Get()
         {
-            return await _db.Employees.Where(e => !e.IsDeprecated).AsNoTracking().ToListAsync();
+            return  _db.Employees.Where(e => !e.IsDeprecated).AsNoTracking().AsQueryable();
         }
 
         public async Task<bool> Remove(Employee employee)

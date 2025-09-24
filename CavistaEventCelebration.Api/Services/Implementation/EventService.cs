@@ -1,5 +1,6 @@
 ﻿using CavistaEventCelebration.Api.Dto;
 using CavistaEventCelebration.Api.Dto.EmployeeEvent;
+using CavistaEventCelebration.Api.Dto.Event;
 using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using CavistaEventCelebration.Api.Services.Interface;
@@ -13,21 +14,22 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             _eventRepo = eventRepo;
         }
 
-        public async Task<Response<bool>> AddEvent(string name)
+        public async Task<Response<bool>> AddEvent(EventDto newEvent)
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(newEvent.Name) || string.IsNullOrWhiteSpace(newEvent.Message))
             {
-                return Response<bool>.Failure("Name can not empty");
+                return Response<bool>.Failure("Name or Message can not empty");
             }
 
-            if ( await _eventRepo.DoesEventExist(name))
+            if ( await _eventRepo.DoesEventExist(newEvent.Name))
             {
-                return Response<bool>.Failure($"Event with {name} already exist");
+                return Response<bool>.Failure($"Event with {newEvent.Name} already exist");
             }
             
             var eventItem = new Event
             {
-                Name = name,
+                Name = newEvent.Name,
+                Message = newEvent.Message, 
                 IsDeprecated = false
             };
 
@@ -64,14 +66,15 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return Response<List<Event>>.Success(events);
         }
 
-        public async Task<Response<bool>> UpdateEvent(int id, string name)
+        public async Task<Response<bool>> UpdateEvent(int id, EventDto updateEvent)
         {
             var eventItem = await _eventRepo.GetById(id);
             if (eventItem == null)
             {
                 return Response<bool>.Failure("Event does not exist");
             }
-            eventItem.Name = name;
+            eventItem.Name = updateEvent.Name;
+            eventItem.Message = updateEvent.Message;
             var result = await _eventRepo.UpdateEvent(eventItem);
             if (result)
             {
@@ -126,10 +129,26 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             return Response<bool>.Failure("Could not delete employee event, try again later");
         }
         
-        public async Task<Response<List<EmployeeEventDto>>> EmployeeEvents()
+        public async Task<PaginatedList<EmployeeEventDto>> EmployeeEvents(int? index, int? pageSize, string? searchString)
         {
-            var events = await _eventRepo.EmployeeEventGet();
-            return Response<List<EmployeeEventDto>>.Success(events);
+            var eventResp = new List<EmployeeEventDto>();
+            var result = new PaginatedList<EmployeeEventDto>(eventResp, 0, 1, 10);
+            var events =  _eventRepo.EmployeeEventGet();
+            if (events != null)
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    events = events.Where(e => e.EmployeeLastName.ToLower().Contains(searchString.ToLower())
+                    || e.EmployeeFirstName.ToLower().Contains(searchString.ToLower())
+                    || e.EmployeeEmailAddress.ToLower().Contains(searchString.ToLower())
+                    || e.EventTitle.ToLower().Contains(searchString.ToLower()));
+                }
+
+                result = await PaginatedList<EmployeeEventDto>.CreateAsync(events, index ?? 1, pageSize ?? 10);
+                return result;
+            }
+
+            return result;
         }
 
         public async Task<Response<bool>> UpdateEployeeEvent(UpdateEmployeeEventDto employeeEvent)

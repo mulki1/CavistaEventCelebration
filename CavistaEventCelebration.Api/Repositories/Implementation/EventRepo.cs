@@ -36,7 +36,8 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                     EmployeeFirstName = emp.FirstName,
                     EmployeeLastName = emp.LastName,
                     EventId = ee.EventId,
-                    EventTitle = e.Name
+                    EventTitle = e.Name,
+                    EventMessage = e.Message
                 }
             ).ToListAsync();
         }
@@ -155,11 +156,11 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
             }
         }
 
-        public async Task<List<EmployeeEventDto>> EmployeeEventGet()
+        public IQueryable<EmployeeEventDto> EmployeeEventGet()
         {
             try
             {
-                return await (
+                return (
                from ee in _db.EmployeeEvents
                join emp in _db.Employees on ee.EmployeeId equals emp.Id
                join e in _db.Events on ee.EventId equals e.Id
@@ -176,13 +177,13 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                    EventDate = ee.EventDate,
                    EmployeeId = emp.Id
                }
-           ).ToListAsync();
+           ).AsQueryable();
 
             }
             catch (Exception ex)
             {
                 Log.Error(ex.Message);
-                return new List<EmployeeEventDto>();
+                return null;
             }
         }
 

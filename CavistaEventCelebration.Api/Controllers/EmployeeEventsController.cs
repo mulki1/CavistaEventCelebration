@@ -1,11 +1,15 @@
 ﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
+using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using CavistaEventCelebration.Api.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CavistaEventCelebration.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class EmployeeEventsController : ControllerBase
     {
         private readonly IEventService _eventService;
@@ -34,9 +38,9 @@ namespace CavistaEventCelebration.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEmployeeEvents()
+        public async Task<ActionResult<PaginatedList<EmployeeEventDto>>> Get(int? index, int? pageSize, string? searchString)
         {
-            return Ok(await _eventService.EmployeeEvents());
+            return Ok(await _eventService.EmployeeEvents(index, pageSize, searchString));
         }
     }
 }
