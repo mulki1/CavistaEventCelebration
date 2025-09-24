@@ -2,6 +2,7 @@
 using CavistaEventCelebration.Api.Models.Authentication;
 using CavistaEventCelebration.Api.Models.EmailService;
 using CavistaEventCelebration.Api.Services.Interface;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CavistaEventCelebration.Api.Controllers
@@ -25,6 +26,23 @@ namespace CavistaEventCelebration.Api.Controllers
             if (userSignInModel != null)
             {
                 var result = await _authenticationService.CreateAsync(userSignInModel);
+                if (result != null && result.Success)
+                {
+                    return Ok(result);
+                }
+
+                return BadRequest(result);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPost("AdminAddUsers")]
+        public async Task<ActionResult<SignInResponse>> AdminCreateUser(AdminUserSignInModel userSignInModel)
+        {
+            if (userSignInModel != null)
+            {
+                var result = await _authenticationService.AdminCreateUserAsync(userSignInModel);
                 if (result != null && result.Success)
                 {
                     return Ok(result);
@@ -134,15 +152,17 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest(result);
         }
 
-
-        [HttpGet("Test-email-on-smtp/{email}")]
-        public async Task  Get(string email)
+        [HttpGet("ChangeUserStatus/{userId}")]
+        public async Task<ActionResult<PaginatedList<UserResponse>>> ChangeUserStatus(string userId, UserStatus status)
         {
-            var rng = new Random();
-            var message = new Message(new string[] { email }, "Test email", "This is the content from our email.");
-            await _mailService.SendEmailAsync(message);
+            var result = await _authenticationService.ChangeUserStatusAsync(userId, status);
+
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
         }
-
-
     }
 }

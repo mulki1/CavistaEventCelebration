@@ -6,8 +6,10 @@ namespace CavistaEventCelebration.Api.Services.Interface
 {
     public interface IAuthenticationService
     {
+        Task<SignInResponse> AdminCreateUserAsync(AdminUserSignInModel model);
         Task<ChangePasswordResponse> ChangePasswordAsync(string userId, ChangePassword newPassword);
         Task<ChangeUserRoleResponse> ChangeUserRoleAsync(string userId, ChangeUserRole changeUserRole);
+        Task<ChangeUserStatusResponse> ChangeUserStatusAsync(string userId, UserStatus status);
         Task<SignInResponse> CreateAsync(UserSignInModel model);
         string GenerateRefreshToken();
         ClaimsPrincipal GetPrincipalFromExpiredToken(string token);

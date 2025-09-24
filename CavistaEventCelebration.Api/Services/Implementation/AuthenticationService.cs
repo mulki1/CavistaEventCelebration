@@ -1,7 +1,9 @@
 ﻿using CavistaEventCelebration.Api.Data;
 using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Models.Authentication;
+using CavistaEventCelebration.Api.Models.EmailService;
 using CavistaEventCelebration.Api.Services.Interface;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
@@ -20,14 +22,17 @@ namespace CavistaEventCelebration.Api.Services.Implementation
         private readonly RoleManager<IdentityRole<Guid>> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly AppDbContext _dbContext;
+        private readonly IMailService _mailService;
 
-        public AuthenticationService(IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, SignInManager<ApplicationUser> signInManager, AppDbContext dbContext)
+        public AuthenticationService(IConfiguration configuration, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, 
+            SignInManager<ApplicationUser> signInManager, AppDbContext dbContext, IMailService mailService)
         {
             _configuration = configuration;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _dbContext = dbContext;
+            _mailService = mailService;
         }
 
         public async Task<LoginResponse> LoginAsync(UserLoginModel model)
@@ -56,7 +61,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
                     if (result.Succeeded && await _dbContext.SaveChangesAsync() > 0)
                     {
-                        var dateExpire = DateTime.Now.AddMinutes(60);
+                        var dateExpire = DateTime.Now.AddHours(5);
 
                         var id = user.Id.ToString();
 
@@ -135,6 +140,71 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 Log.Error(ex.Message);
                 return new SignInResponse { Success = false, Message = $"internal Server Error {ex.Message}" };
             }         
+        }
+
+        public async Task<SignInResponse> AdminCreateUserAsync(AdminUserSignInModel model)
+        {
+            try
+            {
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+
+                if (existingUser != null)
+                {
+                    return new SignInResponse { Success = false, Message = "Unsuccessful", Errors = new List<string> { "Email already exists" } };
+                }
+
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    CreatedOn = DateTime.Now.ToUniversalTime(),
+                    ModifiedOn = DateTime.Now.ToUniversalTime(),
+                };
+
+                if (user != null)
+                {
+                    var password = Helper.GeneratePassword();
+                    var result = await _userManager.CreateAsync(user, password);
+
+                    if (result.Succeeded)
+                    {
+                        var employee = new Employee
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            EmailAddress = model.Email
+                        };
+
+                        _dbContext.Employees.Add(employee);
+
+                        if (await _roleManager.RoleExistsAsync("User"))
+                        {
+                            result = await _userManager.AddToRolesAsync(user, new List<string> { "User" });
+                        }
+
+                        if (result.Succeeded)
+                        {
+                            var message = new Message(new string[] { model.Email }, "Welcome Onboard", $"Dear {model.FirstName} \n\r Welcome to the Event Celebration Platform, your password is {password}");
+
+                            await _mailService.SendEmailAsync(message);
+
+                            return new SignInResponse { Success = true, Message = "User created successfully" };
+                        }
+                         
+
+                        return new SignInResponse { Success = true, Message = "User created successfully but role or employee was not assigned to the user" };
+                    }
+
+                    return new SignInResponse { Success = false, Message = "Unsuccessful", Errors = result.Errors.Select(x => x.Description).ToList() };
+                }
+
+                return new SignInResponse { Success = false, Message = "Unsuccessful" };
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return new SignInResponse { Success = false, Message = $"internal Server Error {ex.Message}" };
+            }
         }
 
         public async Task<LoginResponse> RefreshTokenAsync(RefreshTokenModel refreshTokenModel)
@@ -231,7 +301,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                         return new ChangeUserRoleResponse { Success = true, Message = "User role updated successfully" };
                 }         
 
-                return new ChangeUserRoleResponse { Success = false, Message = "Role exist for user or role does not exist"};
+                return new ChangeUserRoleResponse { Success = true, Message = "Not modified"};
             }
 
             return new ChangeUserRoleResponse { Success = false, Message = "User not found" }; ;
@@ -263,7 +333,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                     UserName = userEmployee.user.UserName,
                     EmployeeId = userEmployee.employee.Id,
                     Email = userEmployee.user.Email,
-                    Status = (userEmployee.user.LockoutEnd.HasValue && userEmployee.user.LockoutEnd.Value < DateTime.UtcNow) || !userEmployee.user.LockoutEnd.HasValue ? "Active" : "Inactive",
+                    Status = (userEmployee.user.LockoutEnd.HasValue && !userEmployee.user.LockoutEnabled) || !userEmployee.user.LockoutEnd.HasValue ? "Active" : "Inactive",
                     PhoneNumber = userEmployee.user.PhoneNumber
                 });
 
@@ -281,6 +351,40 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             }
 
             return result;
+        }
+
+        public async Task<ChangeUserStatusResponse> ChangeUserStatusAsync(string userId, UserStatus status)
+        {
+            var existingUser = await _userManager.FindByIdAsync(userId.ToString());
+            if (existingUser != null)
+            {
+                var isLockedOut = await _userManager.IsLockedOutAsync(existingUser);
+
+                if(status == UserStatus.Active && isLockedOut)
+                {
+                    var lockoutEndDateUtc = DateTimeOffset.UtcNow.AddYears(-1000);
+
+                    await _userManager.SetLockoutEnabledAsync(existingUser, false);
+
+                    await _userManager.SetLockoutEndDateAsync(existingUser, lockoutEndDateUtc);
+
+                    return new ChangeUserStatusResponse { Success = true, Message = "Status updated successfully" };
+                }
+                else if (status == UserStatus.Inactive && !isLockedOut)
+                {
+                    var lockoutEndDateUtc = DateTimeOffset.UtcNow.AddYears(999); ;
+
+                    await _userManager.SetLockoutEnabledAsync(existingUser, true);
+
+                    await _userManager.SetLockoutEndDateAsync(existingUser, lockoutEndDateUtc);
+
+                    return new ChangeUserStatusResponse { Success = true, Message = "Status updated successfully" };
+                }
+
+                return new ChangeUserStatusResponse { Success = true, Message = "Not modified" };
+            }
+
+            return new ChangeUserStatusResponse { Success = false, Message = "User not found" };
         }
 
         private JwtSecurityToken GenerateAccessToken(string id, string userName, string email, IList<string> roles, DateTime? expiry)
