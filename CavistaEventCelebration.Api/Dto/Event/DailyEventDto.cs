@@ -7,5 +7,6 @@
         public string EmployeeLastName { get; set; }
         public string EmployeeEmailAddress { get; set; }
         public string EventTitle { get; set; }
+        public string EventMessage { get; set; }
     }
 }

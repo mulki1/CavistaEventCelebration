@@ -140,7 +140,7 @@ namespace CavistaEventCelebration.Api.Controllers
         {
             var rng = new Random();
             var message = new Message(new string[] { email }, "Test email", "This is the content from our email.");
-            await _mailService.SendEmailSmtp(message);
+            await _mailService.SendEmailAsync(message);
         }
 
 

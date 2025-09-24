@@ -1,12 +1,16 @@
-﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
+﻿using CavistaEventCelebration.Api.Dto;
+using CavistaEventCelebration.Api.Dto.Employee;
+using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Models;
 
 namespace CavistaEventCelebration.Api.Services.Interface
 {
     public interface IEmployeeService
     {
-        bool AddEmployee(EmployeeDto employee);
+        Task<Response<bool>> AddEmployee(AddEmployeeDto employee);
         Task UploadEmployee(string filePath);
-        Task<List<Employee>> Get();
+        Task<PaginatedList<Employee>> Get(int? index, int? pageSize, string? searchString);
+        Task<Response<bool>> DeleteEmployee(Guid id);
+        Task<Response<bool>> UpdateEmployee(UpdateEmployeeDto employee);
     }
 }

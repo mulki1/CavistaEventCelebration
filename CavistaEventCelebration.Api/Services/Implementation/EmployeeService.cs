@@ -1,4 +1,6 @@
-﻿using CavistaEventCelebration.Api.Dto.EmployeeEvent;
+﻿using CavistaEventCelebration.Api.Dto;
+using CavistaEventCelebration.Api.Dto.Employee;
+using CavistaEventCelebration.Api.Dto.EmployeeEvent;
 using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Repositories.Interface;
 using CavistaEventCelebration.Api.Services.Interface;
@@ -14,10 +16,12 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             _repo = repo;
         }
 
-        public bool AddEmployee(EmployeeDto employee)
+        public  async Task<Response<bool>> AddEmployee(AddEmployeeDto employee)
         {
-            if (employee == null) throw new ArgumentNullException("Employee can not be null");
-
+            if (employee == null)
+            {
+                return Response<bool>.Failure("Employee can not be null");
+            }
             var _employee = new Employee()
             {
                 Id = new Guid(),
@@ -25,7 +29,13 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 FirstName = employee.FirstName,
                 LastName = employee.LastName
             };
-            return _repo.Add(_employee);
+            var resonse =  await _repo.Add(_employee);
+            if (resonse)
+            {
+                return Response<bool>.Success(resonse, "Employee created");
+            }
+
+            return Response<bool>.Failure("Could not create employee");
         }
 
         public async Task UploadEmployee(string filePath)
@@ -66,9 +76,64 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             }
         }
 
-        public async Task<List<Employee>> Get()
+        public async Task<PaginatedList<Employee>> Get(int? index, int? pageSize, string? searchString)
         {
-            return await _repo.Get();
+            var empResp = new List<Employee>();
+            var result = new PaginatedList<Employee>(empResp, 0, 1, 10);
+            var employees =  _repo.Get();
+            if(employees != null)
+            {
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    employees = employees.Where(e => e.LastName.ToLower().Contains(searchString.ToLower())
+                    || e.FirstName.ToLower().Contains(searchString.ToLower())
+                    || e.EmailAddress.ToLower().Contains(searchString.ToLower())
+                    );
+                }
+
+                result = await PaginatedList<Employee>.CreateAsync(employees, index ?? 1, pageSize ?? 10);
+                return result;
+
+            }
+
+            return result;
+        }
+
+        public async Task<Response<bool>> DeleteEmployee(Guid id)
+        {
+            var employee = await _repo.GetById(id);
+            if (employee == null)
+            {
+                return Response<bool>.Failure("Employee does not exist");
+            }
+            var result = await _repo.Remove(employee);
+
+            if (result)
+            {
+                return Response<bool>.Success(result, "Employee Deleted");
+            }
+            return Response<bool>.Failure("Could not delete employee, try again later");
+        }
+
+        public async Task<Response<bool>> UpdateEmployee(UpdateEmployeeDto employee)
+        {
+            if (employee == null)
+            {
+                return Response<bool>.Failure("Employee can not be null");
+            }
+            var existingEmployee = await _repo.GetById(employee.Id);
+            if (existingEmployee == null)
+            {
+                return Response<bool>.Failure("Employee does not exist");
+            }
+            existingEmployee.FirstName = employee.FirstName;
+            existingEmployee.LastName = employee.LastName;
+            var result = await _repo.UpdateEmployee(existingEmployee);
+            if (result)
+            {
+                return Response<bool>.Success(true, "Employee updated");
+            }
+            return Response<bool>.Failure("Employee could not be update, please try again");
         }
 
     }

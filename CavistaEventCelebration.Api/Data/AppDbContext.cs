@@ -23,9 +23,9 @@ namespace CavistaEventCelebration.Api.Data
                 entity.Property(e => e.Id)
                       .ValueGeneratedOnAdd();
                 entity.HasData(
-                    new Event { Id = 1, Name = "Birthday" },
-            new Event { Id = 2, Name = "Work Anniversary" },
-            new Event { Id = 3, Name = "Wedding Anniversary" }
+                    new Event { Id = 1, Name = "Birthday", Message = "Wishing you joy, good health, and success in the year ahead " },
+                    new Event { Id = 2, Name = "Work Anniversary", Message = "Thank you for being part of our journey and for your valuable contributions" },
+                    new Event { Id = 3, Name = "Wedding Anniversary", Message = "May your bond continue to grow stronger with each passing year " }
                     );
             });
             builder.Entity<ApplicationUser>(b =>

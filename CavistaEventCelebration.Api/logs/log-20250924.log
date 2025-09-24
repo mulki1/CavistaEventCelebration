@@ -1,0 +1,362 @@
+2025-09-24 07:31:48.206 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-24 07:31:48.313 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-24 07:31:51.970 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-24 07:31:51.970 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-24 07:31:51.971 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-24 07:31:51.971 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-24 07:31:51.971 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-24 07:31:51.972 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-24 07:31:52.060 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 07:31:52.061 +01:00 [INF] Hosting environment: Development
+2025-09-24 07:31:52.061 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-24 07:31:52.123 +01:00 [INF] Server desktop-egf5hga:19208:a1d0946e successfully announced in 44.3054 ms
+2025-09-24 07:31:52.169 +01:00 [INF] Server desktop-egf5hga:19208:a1d0946e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-24 07:31:52.259 +01:00 [INF] 1 servers were removed due to timeout
+2025-09-24 07:31:54.412 +01:00 [INF] Server desktop-egf5hga:19208:a1d0946e all the dispatchers started
+2025-09-24 07:31:54.755 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 2655.6782 ms
+2025-09-24 07:31:55.094 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 104.2358 ms
+2025-09-24 07:33:41.153 +01:00 [INF] HTTP GET /api/Events responded 200 in 154.1615 ms
+2025-09-24 07:54:11.275 +01:00 [ERR] HTTP GET /api/Employees responded 500 in 521.3055 ms
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Models.PaginatedList`1.CreateAsync(IQueryable`1 source, Int32 pageIndex, Int32 pageSize)
+   at CavistaEventCelebration.Api.Services.Implementation.EmployeeService.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\EmployeeService.cs:line 92
+   at CavistaEventCelebration.Api.Controllers.EmployeesController.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EmployeesController.cs:line 25
+   at lambda_method92(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-24 07:54:11.329 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Models.PaginatedList`1.CreateAsync(IQueryable`1 source, Int32 pageIndex, Int32 pageSize)
+   at CavistaEventCelebration.Api.Services.Implementation.EmployeeService.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\EmployeeService.cs:line 92
+   at CavistaEventCelebration.Api.Controllers.EmployeesController.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EmployeesController.cs:line 25
+   at lambda_method92(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 07:55:35.074 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 12.0069 ms
+2025-09-24 07:55:35.444 +01:00 [ERR] HTTP GET /swagger/v1/swagger.json responded 500 in 35.6867 ms
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Employees" for actions - CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api),CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-24 07:55:35.449 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Employees" for actions - CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api),CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 07:56:01.053 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 1.2525 ms
+2025-09-24 07:56:01.281 +01:00 [ERR] HTTP GET /swagger/v1/swagger.json responded 500 in 65.4563 ms
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Employees" for actions - CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api),CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-24 07:56:01.286 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Employees" for actions - CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api),CavistaEventCelebration.Api.Controllers.EmployeesController.Get (CavistaEventCelebration.Api). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 07:56:58.170 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-24 07:56:58.260 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-24 07:57:00.345 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-24 07:57:00.346 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-24 07:57:00.348 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-24 07:57:00.353 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-24 07:57:00.353 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-24 07:57:00.353 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-24 07:57:00.424 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 07:57:00.426 +01:00 [INF] Hosting environment: Development
+2025-09-24 07:57:00.426 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-24 07:57:00.447 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 466.1176 ms
+2025-09-24 07:57:00.467 +01:00 [INF] Server desktop-egf5hga:12524:e122adfd successfully announced in 37.8044 ms
+2025-09-24 07:57:00.513 +01:00 [INF] Server desktop-egf5hga:12524:e122adfd is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-24 07:57:01.590 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 250.0706 ms
+2025-09-24 07:57:02.919 +01:00 [INF] Server desktop-egf5hga:12524:e122adfd all the dispatchers started
+2025-09-24 07:57:47.449 +01:00 [ERR] HTTP GET /api/Employees responded 500 in 9624.9119 ms
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Models.PaginatedList`1.CreateAsync(IQueryable`1 source, Int32 pageIndex, Int32 pageSize)
+   at CavistaEventCelebration.Api.Services.Implementation.EmployeeService.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\EmployeeService.cs:line 92
+   at CavistaEventCelebration.Api.Controllers.EmployeesController.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EmployeesController.cs:line 25
+   at lambda_method84(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2025-09-24 07:57:47.495 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The provider for the source 'IQueryable' doesn't implement 'IAsyncQueryProvider'. Only providers that implement 'IAsyncQueryProvider' can be used for Entity Framework asynchronous operations.
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.CountAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Models.PaginatedList`1.CreateAsync(IQueryable`1 source, Int32 pageIndex, Int32 pageSize)
+   at CavistaEventCelebration.Api.Services.Implementation.EmployeeService.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\EmployeeService.cs:line 92
+   at CavistaEventCelebration.Api.Controllers.EmployeesController.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EmployeesController.cs:line 25
+   at lambda_method84(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 08:07:06.404 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-24 08:07:06.522 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-24 08:07:08.965 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-24 08:07:08.965 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-24 08:07:08.966 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-24 08:07:08.966 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-24 08:07:08.966 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-24 08:07:08.967 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-24 08:07:09.142 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 08:07:09.142 +01:00 [INF] Hosting environment: Development
+2025-09-24 08:07:09.143 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-24 08:07:09.182 +01:00 [INF] Server desktop-egf5hga:1520:ebe132c8 successfully announced in 40.5605 ms
+2025-09-24 08:07:09.201 +01:00 [INF] Server desktop-egf5hga:1520:ebe132c8 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-24 08:07:09.292 +01:00 [INF] 2 servers were removed due to timeout
+2025-09-24 08:07:11.528 +01:00 [INF] Server desktop-egf5hga:1520:ebe132c8 all the dispatchers started
+2025-09-24 08:07:11.658 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 2487.0772 ms
+2025-09-24 08:07:12.139 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 97.9775 ms
+2025-09-24 08:08:30.376 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 08:08:30.382 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 08:08:30.439 +01:00 [INF] HTTP GET /api/Employees responded 200 in 3875.5148 ms
+2025-09-24 08:09:19.148 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 08:09:19.150 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 08:09:19.169 +01:00 [INF] HTTP GET /api/Employees responded 200 in 6337.5830 ms
+2025-09-24 08:25:36.348 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-24 08:25:36.486 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-24 08:25:39.384 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-24 08:25:39.384 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-24 08:25:39.386 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-24 08:25:39.387 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-24 08:25:39.387 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-24 08:25:39.387 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-24 08:25:39.956 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 08:25:39.957 +01:00 [INF] Hosting environment: Development
+2025-09-24 08:25:39.957 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-24 08:25:40.724 +01:00 [INF] Server desktop-egf5hga:7400:73fe364a successfully announced in 770.9365 ms
+2025-09-24 08:25:40.768 +01:00 [INF] Server desktop-egf5hga:7400:73fe364a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-24 08:25:41.894 +01:00 [INF] Server desktop-egf5hga:7400:73fe364a all the dispatchers started
+2025-09-24 08:25:42.057 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 2688.9725 ms
+2025-09-24 08:25:42.359 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 79.4413 ms
+2025-09-24 08:27:25.432 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 08:27:25.437 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 08:27:25.501 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 319.3253 ms
+2025-09-24 08:28:06.875 +01:00 [ERR] Failed executing DbCommand (22ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT e."Id", e0."EmailAddress" AS "EmployeeEmailAddress", e0."FirstName" AS "EmployeeFirstName", e0."LastName" AS "EmployeeLastName", e."EventId", e1."Name" AS "EventTitle", e."EventDate", e0."Id" AS "EmployeeId"
+FROM "EmployeeEvents" AS e
+INNER JOIN "Employees" AS e0 ON e."EmployeeId" = e0."Id"
+INNER JOIN "Events" AS e1 ON e."EventId" = e1."Id"
+WHERE NOT (e."IsDeprecated") AND NOT (e0."IsDeprecated")
+LIMIT @__p_1 OFFSET @__p_0
+2025-09-24 08:28:06.919 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'CavistaEventCelebration.Api.Data.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 2201X: OFFSET must not be negative
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 2201X
+    MessageText: OFFSET must not be negative
+    File: nodeLimit.c
+    Line: 373
+    Routine: recompute_limits
+Npgsql.PostgresException (0x80004005): 2201X: OFFSET must not be negative
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 2201X
+    MessageText: OFFSET must not be negative
+    File: nodeLimit.c
+    Line: 373
+    Routine: recompute_limits
+2025-09-24 08:28:07.207 +01:00 [ERR] HTTP GET /api/EmployeeEvents responded 500 in 506.0616 ms
+Npgsql.PostgresException (0x80004005): 2201X: OFFSET must not be negative
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Models.PaginatedList`1.CreateAsync(IQueryable`1 source, Int32 pageIndex, Int32 pageSize) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Models\PaginatedList.cs:line 27
+   at CavistaEventCelebration.Api.Services.Implementation.EventService.EmployeeEvents(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\EventService.cs:line 147
+   at CavistaEventCelebration.Api.Controllers.EmployeeEventsController.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EmployeeEventsController.cs:line 42
+   at lambda_method84(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+  Exception data:
+    Severity: ERROR
+    SqlState: 2201X
+    MessageText: OFFSET must not be negative
+    File: nodeLimit.c
+    Line: 373
+    Routine: recompute_limits
+2025-09-24 08:28:07.236 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Npgsql.PostgresException (0x80004005): 2201X: OFFSET must not be negative
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at CavistaEventCelebration.Api.Models.PaginatedList`1.CreateAsync(IQueryable`1 source, Int32 pageIndex, Int32 pageSize) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Models\PaginatedList.cs:line 27
+   at CavistaEventCelebration.Api.Services.Implementation.EventService.EmployeeEvents(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Services\Implementation\EventService.cs:line 147
+   at CavistaEventCelebration.Api.Controllers.EmployeeEventsController.Get(Nullable`1 index, Nullable`1 pageSize, String searchString) in C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api\Controllers\EmployeeEventsController.cs:line 42
+   at lambda_method84(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+  Exception data:
+    Severity: ERROR
+    SqlState: 2201X
+    MessageText: OFFSET must not be negative
+    File: nodeLimit.c
+    Line: 373
+    Routine: recompute_limits
+2025-09-24 08:28:39.339 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 26.6994 ms

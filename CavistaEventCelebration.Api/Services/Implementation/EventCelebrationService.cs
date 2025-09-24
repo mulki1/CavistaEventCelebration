@@ -29,12 +29,12 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             foreach (var ev in employeeEvents)
             {
                 string generalMessage = "We are excited to celebrate this special occasion with you!";
-                string customMessage = ev.EventTitle switch
+                string customMessage = ev.EventId switch
                 {
-                    "Birthday" => "Wishing you joy, good health, and success in the year ahead 🎂",
-                    "Work Anniversary" => "Thank you for being part of our journey and for your valuable contributions 💼",
-                    "Wedding Anniversary" => "May your bond continue to grow stronger with each passing year 💕",
-                    _ => "Best wishes on your special day! 🎊"
+                    1 => $"{ev.EventMessage}  🎂",
+                    2 => $"{ev.EventMessage}  💼",
+                    3 => $"{ev.EventMessage}  💕",
+                    _ => $"{ev.EventMessage}. <br/> Best wishes on your special day! 🎊"
                 };
 
                 var template = LoadTemplate();
@@ -52,8 +52,10 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                     EmailBody = finalBody,
                     EmailToName = $"{ev.EmployeeFirstName} {ev.EmployeeLastName}"
                 };
+                var to = new List<string>() { ev.EmployeeEmailAddress };
+                var message = new Message(to, $"Happy {ev.EventTitle}! 🎊", finalBody);
+                await _mailService.SendEmailAsync(message);
 
-                await _mailService.SendEmailAsync(mailData);
             }
             if (employeeEvents != null && employeeEvents.Any())
             {
@@ -78,7 +80,11 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                     EmailBody = summaryBody.ToString()
                 };
 
-                await _mailService.SendEmailAsync(teamsMail);
+                var to = new List<string>() { teamsChannelEmail };
+                var message = new Message(to, $"🎉 {today} {eventType} Celebrations", summaryBody.ToString());
+
+                //this will most likely not work due to teams organisation restriction
+                await _mailService.SendEmailAsync(message);
             }
         }
 

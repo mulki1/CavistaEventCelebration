@@ -2,7 +2,11 @@
 {
     public class DashBoardDto
     {
+        public Guid UserId { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
         public int NumberOfEmployees { get; set; }
+
         public int NumberOfEventsForTheMonth { get; set; }
         public List<EmployeeEventDto> EventsForTheMonth { get; set; }
         public List<EmployeeEventDto> EventsForTheWeek { get; set; }
