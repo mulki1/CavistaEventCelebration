@@ -1,0 +1,37 @@
+2025-09-25 06:10:58.371 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-25 06:10:58.528 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-25 06:11:01.975 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-25 06:11:01.976 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-25 06:11:01.976 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-25 06:11:01.977 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-25 06:11:01.977 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-25 06:11:01.985 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-25 06:11:02.579 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-25 06:11:02.579 +01:00 [INF] Hosting environment: Development
+2025-09-25 06:11:02.580 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-25 06:11:03.390 +01:00 [INF] Server desktop-egf5hga:17404:47987178 successfully announced in 812.3918 ms
+2025-09-25 06:11:03.401 +01:00 [INF] Server desktop-egf5hga:17404:47987178 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-25 06:11:03.448 +01:00 [INF] 1 servers were removed due to timeout
+2025-09-25 06:11:04.242 +01:00 [INF] Server desktop-egf5hga:17404:47987178 all the dispatchers started
+2025-09-25 06:11:04.374 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 2416.9508 ms
+2025-09-25 06:11:04.846 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 48.6494 ms
+2025-09-25 06:11:46.146 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 9.9227 ms
+2025-09-25 06:11:46.382 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 34.5259 ms
+2025-09-25 06:11:54.254 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 1.3474 ms
+2025-09-25 06:11:54.498 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 30.2132 ms
+2025-09-25 06:12:10.755 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 3.8607 ms
+2025-09-25 06:12:41.742 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 1057.1478 ms
+2025-09-25 06:14:21.583 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-25 06:14:21.587 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-25 06:14:21.650 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 6791.1603 ms
+2025-09-25 06:15:32.380 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 252.9143 ms
+2025-09-25 06:16:32.061 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-25 06:16:32.061 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-25 06:16:32.081 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 79.4842 ms
+2025-09-25 06:17:09.079 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 275.2119 ms
+2025-09-25 06:20:04.634 +01:00 [INF] HTTP POST /api/EmployeeEvents responded 200 in 78024.8404 ms
+2025-09-25 06:20:23.204 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 47.4192 ms

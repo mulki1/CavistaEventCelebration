@@ -10,6 +10,8 @@ namespace CavistaEventCelebration.Api.Models
         public DateTime CreatedOn { get; set; }
 
         public DateTime ModifiedOn { get; set; }
+        public Guid EmployeeId { get; set; }   
+        public Employee Employee { get; set; } 
 
     }
 }

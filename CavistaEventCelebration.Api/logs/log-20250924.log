@@ -430,3 +430,90 @@ Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/
 2025-09-24 16:35:32.486 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 2804.9123 ms
 2025-09-24 16:39:17.174 +01:00 [INF] HTTP PUT /api/EmployeeEvents/approve-employee-event responded 200 in 76328.1949 ms
 2025-09-24 16:39:41.675 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 3640.8560 ms
+2025-09-24 20:30:57.977 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-24 20:30:58.156 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-24 20:31:01.126 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-24 20:31:01.127 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-24 20:31:01.127 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-24 20:31:01.127 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-24 20:31:01.128 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-24 20:31:01.128 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-24 20:31:01.498 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 20:31:01.499 +01:00 [INF] Hosting environment: Development
+2025-09-24 20:31:01.499 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-24 20:31:02.048 +01:00 [INF] Server desktop-egf5hga:15640:5bc5c281 successfully announced in 550.287 ms
+2025-09-24 20:31:02.086 +01:00 [INF] Server desktop-egf5hga:15640:5bc5c281 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-24 20:31:02.098 +01:00 [INF] 1 servers were removed due to timeout
+2025-09-24 20:31:02.167 +01:00 [INF] Removed 2 outdated record(s) from 'aggregatedcounter' table.
+2025-09-24 20:31:03.214 +01:00 [INF] Removed 2 outdated record(s) from 'job' table.
+2025-09-24 20:31:03.229 +01:00 [INF] Server desktop-egf5hga:15640:5bc5c281 all the dispatchers started
+2025-09-24 20:31:03.357 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 2280.1346 ms
+2025-09-24 20:31:03.688 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 67.1215 ms
+2025-09-24 20:33:57.905 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 7.9059 ms
+2025-09-24 20:34:44.713 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 1216.4820 ms
+2025-09-24 20:38:02.168 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 20:38:02.174 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 20:38:30.380 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 110966.2927 ms
+2025-09-24 22:35:27.198 +01:00 [ERR] Failed executing DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUsers" ADD CONSTRAINT "FK_AspNetUsers_Employees_EmployeeId" FOREIGN KEY ("EmployeeId") REFERENCES "Employees" ("Id") ON DELETE RESTRICT;
+2025-09-24 22:41:21.452 +01:00 [ERR] Failed executing DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "AspNetUsers" ADD CONSTRAINT "FK_AspNetUsers_Employees_EmployeeId" FOREIGN KEY ("EmployeeId") REFERENCES "Employees" ("Id") ON DELETE CASCADE;
+2025-09-24 22:45:37.889 +01:00 [INF] Start installing Hangfire SQL objects...
+2025-09-24 22:45:37.979 +01:00 [INF] Hangfire SQL objects installed.
+2025-09-24 22:45:40.147 +01:00 [INF] Starting Hangfire Server using job storage: 'PostgreSQL Server: Host: localhost, DB: cavistaeventcelebration, Schema: hangfire'
+2025-09-24 22:45:40.148 +01:00 [INF] Using the following options for PostgreSQL job storage:
+2025-09-24 22:45:40.148 +01:00 [INF]     Queue poll interval: 00:00:15.
+2025-09-24 22:45:40.148 +01:00 [INF]     Invisibility timeout: 00:30:00.
+2025-09-24 22:45:40.149 +01:00 [INF]     Use sliding invisibility timeout: False.
+2025-09-24 22:45:40.149 +01:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-09-24 22:45:40.300 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 22:45:40.301 +01:00 [INF] Hosting environment: Development
+2025-09-24 22:45:40.301 +01:00 [INF] Content root path: C:\SparkHubGit\CavistaEventCelebration\CavistaEventCelebration.Api
+2025-09-24 22:45:41.037 +01:00 [INF] Server desktop-egf5hga:13012:8fd63c77 successfully announced in 727.4702 ms
+2025-09-24 22:45:41.061 +01:00 [INF] Server desktop-egf5hga:13012:8fd63c77 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-09-24 22:45:41.084 +01:00 [INF] 1 servers were removed due to timeout
+2025-09-24 22:45:42.644 +01:00 [INF] Server desktop-egf5hga:13012:8fd63c77 all the dispatchers started
+2025-09-24 22:45:42.900 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 2988.4906 ms
+2025-09-24 22:45:43.361 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 100.3075 ms
+2025-09-24 22:46:39.495 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 7.9560 ms
+2025-09-24 22:47:27.040 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 1186.8040 ms
+2025-09-24 22:48:41.110 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:48:41.119 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:48:41.182 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 3570.3172 ms
+2025-09-24 22:50:21.248 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:50:21.249 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:50:21.272 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 13450.0717 ms
+2025-09-24 22:50:22.600 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 81.5039 ms
+2025-09-24 22:50:22.965 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2022 ms
+2025-09-24 22:50:23.833 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 278.9075 ms
+2025-09-24 22:51:08.645 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 10539.4232 ms
+2025-09-24 22:52:24.801 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 5207.1959 ms
+2025-09-24 22:53:25.856 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:53:25.856 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:53:25.879 +01:00 [INF] HTTP GET /api/Employees responded 200 in 127.7381 ms
+2025-09-24 22:54:16.741 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:54:16.741 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 22:54:16.789 +01:00 [INF] HTTP GET /api/Auth/GetUsers responded 200 in 124.7523 ms
+2025-09-24 22:55:38.154 +01:00 [INF] HTTP POST /api/Auth/Signup responded 200 in 471.8605 ms
+2025-09-24 22:57:03.181 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 225.0326 ms
+2025-09-24 22:57:58.298 +01:00 [INF] HTTP GET /api/Auth/GetUsers responded 200 in 86.9084 ms
+2025-09-24 23:00:10.351 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 13080.5117 ms
+2025-09-24 23:10:26.191 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 23:10:26.191 +01:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2025-09-24 23:10:26.215 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 2767.1080 ms
+2025-09-24 23:10:27.384 +01:00 [INF] HTTP GET /swagger/index.html responded 200 in 1.8390 ms
+2025-09-24 23:10:27.585 +01:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1491 ms
+2025-09-24 23:10:28.259 +01:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 71.7149 ms
+2025-09-24 23:11:09.832 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 242.9529 ms
+2025-09-24 23:11:43.327 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 401 in 19.5923 ms
+2025-09-24 23:13:37.072 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 401 in 1.7209 ms
+2025-09-24 23:14:36.675 +01:00 [INF] HTTP POST /api/Auth/Login responded 200 in 200.9089 ms
+2025-09-24 23:15:30.923 +01:00 [INF] HTTP GET /api/EmployeeEvents responded 200 in 17314.0627 ms

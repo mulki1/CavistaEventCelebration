@@ -95,6 +95,17 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 return Response<bool>.Failure("Employee event already exist");
             }
 
+            if (!canApprove)
+            {
+                //get employee id from user id
+                var user = await _eventRepo.user(userId);
+                if(user == null)
+                {
+                    return Response<bool>.Failure("user does not exist");
+                }
+                employeeEvent.EmployeeId = user.EmployeeId;
+            }
+
             var newEployeeEvent = new EmployeeEvent()
             {
                 Id = new Guid(),

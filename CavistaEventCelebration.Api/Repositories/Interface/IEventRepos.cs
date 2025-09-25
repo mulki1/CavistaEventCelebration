@@ -21,5 +21,6 @@ namespace CavistaEventCelebration.Api.Repositories.Interface
         Task<List<EmployeeEventDto>> GetEventsInRangeAsync(DateOnly startDate, DateOnly endDate);
         Task<bool> UpdateEmployeeEvents(List<EmployeeEvent> employeeEvents);
         Task<List<EmployeeEvent>> GetEmployeeEvents(List<Guid> employeeEventIds);
+        Task<ApplicationUser> user(Guid userId);
     }
 }

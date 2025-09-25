@@ -59,7 +59,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
             }
             if (employeeEvents != null && employeeEvents.Any())
             {
-                var teamsChannelEmail = "ashehu@axxess.com"; //"9c1a5b36.axxess.com@amer.teams.ms";
+                var teamsChannelEmail = "9c1a5b36.axxess.com@amer.teams.ms";
                 string today = DateTime.UtcNow.ToString("MMMM, dd , yyyy");
                 string eventType = employeeEvents.FirstOrDefault()?.EventTitle ?? "Event";
                 var summaryBody = new StringBuilder();

@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using CavistaEventCelebration.Api.Data;
+﻿using CavistaEventCelebration.Api.Data;
 using CavistaEventCelebration.Api.Dto;
 using CavistaEventCelebration.Api.Dto.Event;
 using CavistaEventCelebration.Api.Models;
@@ -29,7 +28,7 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                 join e in _db.Events on ee.EventId equals e.Id
                 where ee.EventId == eventId
                       && ee.EventDate == today
-                      && !ee.IsDeprecated //&& ee.IsApproved
+                      && !ee.IsDeprecated && ee.IsApproved
                       && !emp.IsDeprecated
                 select new DailyEventDto
                 {
@@ -161,18 +160,28 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
         {
             try
             {
+                Guid employeeId = Guid.Empty;
+
+                if (currentUserId != Guid.Empty)
+                {
+                    employeeId = _db.Users
+                                    .Where(u => u.Id == currentUserId)
+                                    .Select(u => u.EmployeeId)
+                                    .FirstOrDefault();
+                }
+
                 return (
                     from ee in _db.EmployeeEvents
                     join emp in _db.Employees on ee.EmployeeId equals emp.Id
                     join e in _db.Events on ee.EventId equals e.Id
-
                     join u in _db.Users on ee.ApprovedBy equals u.Id into approvedUsers
                     from u in approvedUsers.DefaultIfEmpty()
-
-                    join approverEmp in _db.Employees on u.Email equals approverEmp.EmailAddress into approverEmployees
+                    join approverEmp in _db.Employees on u.EmployeeId equals approverEmp.Id into approverEmployees
                     from approverEmp in approverEmployees.DefaultIfEmpty()
 
-                    where !ee.IsDeprecated && !emp.IsDeprecated && (currentUserId == Guid.Empty || emp.Id == currentUserId)
+                    where !ee.IsDeprecated
+                          && !emp.IsDeprecated
+                          && (employeeId == Guid.Empty || ee.EmployeeId == employeeId) 
                     select new EmployeeEventDto
                     {
                         Id = ee.Id,
@@ -183,8 +192,10 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                         EventTitle = e.Name,
                         EventDate = ee.EventDate,
                         EmployeeId = emp.Id,
-                        IsApproved = ee.IsApproved,
-                        ApprovedBy = approverEmp != null ? $"{approverEmp.FirstName} {approverEmp.LastName}" : "",
+                        ApprovedBy = approverEmp != null
+                                        ? $"{approverEmp.FirstName} {approverEmp.LastName}"
+                                        : null,
+                        IsApproved = ee.IsApproved
                     }
                 ).AsQueryable();
             }
@@ -194,6 +205,7 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
                 return null;
             }
         }
+
 
         public async Task<EmployeeEvent> GetEmployeeEventById(Guid id)
         {
@@ -251,6 +263,20 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
             {
                 Log.Error(ex.Message);
                 return true;
+            }
+        }
+
+        public async Task<ApplicationUser> user(Guid userId)
+        {
+            try
+            {
+                var user = await _db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+                return user;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return null;
             }
         }
 

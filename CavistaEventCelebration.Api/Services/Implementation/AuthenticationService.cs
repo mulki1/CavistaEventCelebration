@@ -3,6 +3,7 @@ using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Models.Authentication;
 using CavistaEventCelebration.Api.Services.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Data;
@@ -84,17 +85,23 @@ namespace CavistaEventCelebration.Api.Services.Implementation
         {
             try
             {
+                var employee = await _dbContext.Employees.FirstOrDefaultAsync(e => e.EmailAddress == model.Email);
+                if (employee == null)
+                {
+                    return new SignInResponse { Success = false, Message = "Unsuccessful", Errors = new List<string> { "Employee not found, a user must be an existing employee" } };
+                }
                 var existingUser = await _userManager.FindByEmailAsync(model.Email);
 
                 if (existingUser != null)
                 {
                     return new SignInResponse { Success = false, Message = "Unsuccessful", Errors = new List<string> { "Email already exists" } };
                 }
-
+               
                 var user = new ApplicationUser
                 {
                     UserName = model.UserName,
                     Email = model.Email,
+                    EmployeeId = employee.Id,
                     CreatedOn = DateTime.Now.ToUniversalTime(),
                     ModifiedOn = DateTime.Now.ToUniversalTime(),                    
                 };                
@@ -105,15 +112,6 @@ namespace CavistaEventCelebration.Api.Services.Implementation
 
                     if (result.Succeeded)
                     {
-                        var employee = new Employee
-                        {
-                            FirstName = model.FirstName,
-                            LastName = model.LastName,
-                            EmailAddress = model.Email
-                        };
-
-                        _dbContext.Employees.Add(employee);
-
                         if (await _roleManager.RoleExistsAsync("User"))
                         {
                             result = await _userManager.AddToRolesAsync(user, new List<string> { "User" });
