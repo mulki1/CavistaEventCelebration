@@ -36,3 +36,41 @@ export const EmployeeSchema = Yup.object().shape({
     .email('Invalid email address')
     .required('Email is required'),
 });
+
+export const EventSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Event name must be at least 2 characters')
+    .required('Event name is required'),
+  message: Yup.string()
+    .min(24, 'Event message must be at least 24 characters')
+    .required('Event message is required'),
+});
+
+export const AddUserSchema = Yup.object().shape({
+  userName: Yup.string()
+    .min(2, 'User name must be at least 2 characters')
+    .required('User name is required'),
+  firstName: Yup.string()
+    .min(2, 'First name must be at least 2 characters')
+    .required('First name is required'),
+  lastName: Yup.string()
+    .min(2, 'Last name must be at least 2 characters')
+    .required('Last name is required'),
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+});
+
+export const ChangeRoleSchema = Yup.object().shape({
+  role: Yup.string()
+    .min(2, 'Role name must be at least 2 characters')
+    .required('Role name is required'),
+});
+
+export const EmployeeEventSchema = Yup.object().shape({
+  eventId: Yup.string().required('Event ID is required'),
+  employeeId: Yup.string()
+    .required('Employee ID is required'),
+  eventDate: Yup.date()
+    .required('Event date is required'),
+});
