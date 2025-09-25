@@ -90,21 +90,23 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                 return Response<bool>.Failure("Invalid request");
             }
 
-            if( await _eventRepo.DoesEmployeeEventExist(employeeEvent.EmployeeId, employeeEvent.EventId))
-            {
-                return Response<bool>.Failure("Employee event already exist");
-            }
-
             if (!canApprove)
             {
                 //get employee id from user id
                 var user = await _eventRepo.user(userId);
-                if(user == null)
+                if (user == null)
                 {
                     return Response<bool>.Failure("user does not exist");
                 }
                 employeeEvent.EmployeeId = user.EmployeeId;
             }
+
+            if ( await _eventRepo.DoesEmployeeEventExist(employeeEvent.EmployeeId, employeeEvent.EventId))
+            {
+                return Response<bool>.Failure("Employee event already exist");
+            }
+
+            
 
             var newEployeeEvent = new EmployeeEvent()
             {
