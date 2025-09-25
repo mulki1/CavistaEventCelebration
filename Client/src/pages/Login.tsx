@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Formik, Form } from 'formik';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import request from '../utils/httpsRequest';
 import toast from 'react-hot-toast';
+import request from '../utils/httpsRequest';
 import { useUserAuthContext } from '../context/user/user.hook';
 import { UserAuthAction } from '../context/user/user-reducer';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -15,7 +15,6 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Heading,
   Input,
   Stack,
   Text,
@@ -27,6 +26,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { jwtDecode } from 'jwt-decode';
+import { LuSparkles } from 'react-icons/lu';
 
 interface LoginFormValues {
   email: string;
@@ -62,7 +63,16 @@ const Login = () => {
         type: UserAuthAction.SET_TOKEN as keyof typeof UserAuthAction,
         payload: response?.data?.accessToken,
       });
-      navigate('/dashboard');
+      localStorage.setItem('refreshToken', response?.data?.refreshToken);
+      // Decode JWT to get user role
+      const decodedToken = jwtDecode<{ [key: string]: any }>(response?.data?.accessToken);
+      const roleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+      const userRole = decodedToken[roleClaim];
+      if (userRole?.includes('SuperAdmin')) {
+        navigate('/dashboard');
+      } else if(userRole === 'User'){
+        navigate('/events');
+      }
     }
    } catch (error) {
      toast.error('Login failed. Please try again.');
@@ -71,22 +81,24 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = React.useState(false);
   const formBackground = useColorModeValue("white", "gray.700");
-  const brandColor = useColorModeValue("blue.500", "blue.200");
+  const brandColor = useColorModeValue("red.500", "red.200");
   
   return (
     <Flex
       minH="100vh"
       align="center"
       justify="center"
-      bg={useColorModeValue("gray.50", "gray.800")}
+      // bg={useColorModeValue("gray.50", "gray.800")}
+      bgGradient="linear(to-br, orange.50, red.100)"
     >
       <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
         <Stack align="center">
-          <Heading fontSize="4xl" textAlign="center">
-            Welcome Back
-          </Heading>
+          <div className="flex items-center justify-center space-x-2">
+            <LuSparkles className='text-red-600 w-8 h-8' />
+            <Text className="text-red-600 text-2xl font-semibold">SparkHub</Text>
+          </div>
           <Text fontSize="lg" color="gray.600">
-            Sign in to your account
+            Welcome back! Sign in to your account
           </Text>
         </Stack>
         <Box

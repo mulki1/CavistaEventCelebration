@@ -13,6 +13,7 @@ import request from '../utils/httpsRequest';
 import { useUserAuthContext } from '../context/user/user.hook';
 import { EmployeeSchema } from '../utils/validationSchema';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 interface AddEmployeeProps {
   isOpen: boolean;
@@ -22,26 +23,31 @@ interface AddEmployeeProps {
 
 const AddEmployee = ({ isOpen, onClose, fetchingEmployees }: AddEmployeeProps) => {
 
-    const { token } = useUserAuthContext();
-    const initialValues = {
-        firstName: '',
-        lastName: '',
-        email: '',
-    }
+  const { token } = useUserAuthContext();
+  const [loading, setLoading] = useState(false);
+  const initialValues = {
+    firstName: '',
+    lastName: '',
+    email: '',
+  }
 
-    const handleSubmit = async (values: typeof initialValues) => {
-        try {
-            const response = await request({ token }).post('/api/Employeess', values);
-            if (response && response.status === 201) {
-                toast.success('Employee added successfully!');
-                fetchingEmployees();
-                onClose();
-            }
-        } catch (error) {
-            console.error('Failed to add employee:', error);
-            toast.error('Failed to add employee. Please try again.');
-        }
+  const handleSubmit = async (values: typeof initialValues) => {
+    setLoading(true);
+    try {
+      const response = await request({ token }).post('/api/Employees', values);
+      if (response && response.status === 201) {
+        toast.success('Employee added successfully!');
+        fetchingEmployees();
+        onClose();
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error('Failed to add employee:', error);
+      toast.error('Failed to add employee. Please try again.');
+    } finally {
+      setLoading(false);
     }
+  }
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -137,9 +143,10 @@ const AddEmployee = ({ isOpen, onClose, fetchingEmployees }: AddEmployeeProps) =
                     width="full"
                     bg={"red.600"}
                     color={"white"}
-                    disabled={isSubmitting}
+                    isLoading={loading}
+                    disabled={isSubmitting || loading}
                   >
-                    {isSubmitting ? 'Signing in...' : 'Sign in'}
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
                   </Button>
                 </div>
               </Form>
@@ -147,7 +154,7 @@ const AddEmployee = ({ isOpen, onClose, fetchingEmployees }: AddEmployeeProps) =
           </Formik>
           </ModalBody>
         </ModalContent>
-      </Modal>
+    </Modal>
   )
 }
 
