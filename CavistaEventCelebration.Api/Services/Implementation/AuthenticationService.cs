@@ -162,6 +162,7 @@ namespace CavistaEventCelebration.Api.Services.Implementation
                     Email = model.Email,
                     CreatedOn = DateTime.Now.ToUniversalTime(),
                     ModifiedOn = DateTime.Now.ToUniversalTime(),
+                    EmployeeId = employee.Id
                 };
 
                 if (user != null)
