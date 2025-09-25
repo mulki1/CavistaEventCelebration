@@ -20,15 +20,17 @@ namespace CavistaEventCelebration.Api.Repositories.Implementation
 
         public async Task<List<DailyEventDto>> GetDailyEvents(int eventId)
         {
-            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            var today = DateTime.UtcNow; 
 
             return await (
                 from ee in _db.EmployeeEvents
                 join emp in _db.Employees on ee.EmployeeId equals emp.Id
                 join e in _db.Events on ee.EventId equals e.Id
                 where ee.EventId == eventId
-                      && ee.EventDate == today
-                      && !ee.IsDeprecated && ee.IsApproved
+                      && ee.EventDate.Month == today.Month
+                      && ee.EventDate.Day == today.Day
+                      && !ee.IsDeprecated
+                      && ee.IsApproved
                       && !emp.IsDeprecated
                 select new DailyEventDto
                 {

@@ -1,8 +1,7 @@
 ﻿using CavistaEventCelebration.Api.Models;
 using CavistaEventCelebration.Api.Models.Authentication;
-using CavistaEventCelebration.Api.Models.EmailService;
 using CavistaEventCelebration.Api.Services.Interface;
-using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CavistaEventCelebration.Api.Controllers
@@ -36,8 +35,8 @@ namespace CavistaEventCelebration.Api.Controllers
 
             return BadRequest();
         }
-
-        [HttpPost("AdminAddUsers")]
+        [Authorize(Roles = "SuperAdmin,People")]
+        [HttpPost("AdminAddUser")]
         public async Task<ActionResult<SignInResponse>> AdminCreateUser(AdminUserSignUpModel userSignInModel)
         {
             if (userSignInModel != null)
@@ -72,6 +71,7 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [HttpPost("RefreshToken")]
         public async Task<ActionResult<LoginResponse>> RefreshToken([FromBody] RefreshTokenModel refreshTokenModel)
         {
@@ -90,6 +90,7 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [HttpPost("ChangePassword/{userId}")]
         public async Task<ActionResult<ChangePasswordResponse>> ChangePassword([FromBody] ChangePassword changePasswordModel,  string userId)
         {
@@ -108,6 +109,7 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest();
         }
 
+        [Authorize(Roles = "SuperAdmin,People")]
         [HttpPost("ChangeUserRole/{userId}")]
         public async Task<ActionResult<ChangeUserRoleResponse>> ChangeUserRole([FromBody] ChangeUserRole changeUserRoleModel, string userId)
         {
@@ -126,6 +128,7 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest();
         }
 
+        [Authorize(Roles = "SuperAdmin,People")]
         [HttpGet("GetRoles")]
         public async Task<ActionResult<List<GetRolesResponse>>> GetRoles()
         {
@@ -139,6 +142,7 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest(result);
         }
 
+        [Authorize(Roles = "SuperAdmin,People")]
         [HttpGet("GetUsers")]
         public async Task<ActionResult<PaginatedList<UserResponse>>> GetUsers(int? index, int? pageSize, string? searchString)
         {
@@ -152,6 +156,7 @@ namespace CavistaEventCelebration.Api.Controllers
             return BadRequest(result);
         }
 
+        [Authorize(Roles = "SuperAdmin,People")]
         [HttpGet("ChangeUserStatus/{userId}")]
         public async Task<ActionResult<PaginatedList<UserResponse>>> ChangeUserStatus(string userId, UserStatus status)
         {
